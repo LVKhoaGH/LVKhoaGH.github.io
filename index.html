@@ -144,7 +144,8 @@
         </div>
       </header>
 
-      <main id="main" class="mx-auto max-w-6xl px-5 py-8 reveal">
+      <main id="main" class="mx-auto max-w-6xl px-5 py-8">
+        <div id="portfolio" class="reveal">
         <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
           <!-- Left rail / status -->
           <aside class="lg:col-span-4">
@@ -319,6 +320,7 @@
             </section>
           </section>
         </div>
+        </div>
       </main>
 
       <footer class="mx-auto max-w-6xl px-5 pb-10 pt-6 text-center">
@@ -336,92 +338,94 @@
         const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         const boot = document.getElementById("boot");
         const bootTextEl = document.getElementById("bootText");
-        const main = document.getElementById("main");
+        const portfolio = document.getElementById("portfolio");
 
-        const lines = [
-          { text: "System Bootstrap, Version 15.4(3)M2, RELEASE SOFTWARE (fc1)", tone: "base" },
-          { text: "Compiled Thu 01-May-26 22:42 by prod_rel_team", tone: "base" },
-          { text: "ROM: Bootstrap program is C2900 boot loader", tone: "base" },
-          { text: "", tone: "base" },
-          { text: "Press RETURN to get started!", tone: "base" },
-          { text: "", tone: "base" },
-          { text: "Router> enable", tone: "cmd" },
-          { text: "Router# show levietkhoa portfolio", tone: "cmd" },
-          { text: "Building configuration...", tone: "base" },
-          { text: "[OK]", tone: "base" },
-          { text: "", tone: "base" },
-        ];
+        const COLOR_BASE = "#c9d1d9";
+        const COLOR_CMD = "#56d364";
 
-        function revealMain() {
-          if (!main) return;
-          main.classList.add("on");
+        const LINE_1 = "System Bootstrap, Version 15.4(3)M2, RELEASE SOFTWARE (fc1)";
+        const LINE_2 = "ROM: Bootstrap program is C2900 boot loader";
+        const LINE_3 = "Press RETURN to get started!";
+        const LINE_4 = "Router> enable";
+        const LINE_5 = "Router# show levietkhoa portfolio";
+        const LINE_6 = "Building configuration...";
+        const LINE_7 = "[OK]";
+
+        function revealPortfolio() {
+          if (!portfolio) return;
+          portfolio.classList.add("on");
+        }
+
+        function sleep(ms) {
+          return new Promise((resolve) => window.setTimeout(resolve, ms));
+        }
+
+        function appendLine(text, color) {
+          const span = document.createElement("span");
+          span.style.color = color;
+          span.textContent = text;
+          bootTextEl.appendChild(span);
+          bootTextEl.appendChild(document.createTextNode("\n"));
+        }
+
+        async function typeLine(text, color, perCharMs) {
+          const span = document.createElement("span");
+          span.style.color = color;
+          bootTextEl.appendChild(span);
+          for (let i = 0; i < text.length; i += 1) {
+            span.textContent += text[i];
+            await sleep(perCharMs);
+          }
+          bootTextEl.appendChild(document.createTextNode("\n"));
+        }
+
+        async function fadeOutBootThenReveal() {
+          // wait extra 800ms before transitioning
+          await sleep(800);
+          revealPortfolio();
+          if (!boot) return;
+          boot.style.transition = "opacity 550ms ease";
+          boot.style.opacity = "0";
+          await sleep(600);
+          boot.remove();
         }
 
         if (prefersReduced) {
           if (boot) boot.style.display = "none";
-          revealMain();
+          revealPortfolio();
           return;
         }
 
-        let lineIdx = 0;
-        let charIdx = 0;
-        let currentLineNode = null;
+        async function runBootSequence() {
+          if (!bootTextEl) return;
+          bootTextEl.textContent = "";
 
-        function appendNewLineNode(tone) {
-          const span = document.createElement("span");
-          if (tone === "cmd") {
-            // Keep it terminal-like, but emphasize prompt/command.
-            span.className = "text-[#56d364]";
-          } else {
-            span.className = "text-[#c9d1d9]";
-          }
-          bootTextEl.appendChild(span);
-          currentLineNode = span;
+          // Lines 1–3 appear full, 800ms apart
+          appendLine(LINE_1, COLOR_BASE);
+          await sleep(800);
+          appendLine(LINE_2, COLOR_BASE);
+          await sleep(800);
+          appendLine(LINE_3, COLOR_BASE);
+          await sleep(800);
+
+          // Line 4 typing 100ms/char, then wait 500ms
+          await typeLine(LINE_4, COLOR_CMD, 100);
+          await sleep(500);
+
+          // Line 5 typing 100ms/char, then MUST wait 3000ms
+          await typeLine(LINE_5, COLOR_CMD, 100);
+          await sleep(3000);
+
+          // After 3 seconds, show line 6 and 7
+          appendLine(LINE_6, COLOR_BASE);
+          appendLine(LINE_7, COLOR_BASE);
+
+          // Then wait 800ms and transition
+          await fadeOutBootThenReveal();
         }
 
-        function appendNewlineChar() {
-          bootTextEl.appendChild(document.createTextNode("\n"));
-        }
-
-        function tick() {
-          const current = lines[lineIdx];
-          if (!current) return;
-
-          if (!currentLineNode) {
-            appendNewLineNode(current.tone);
-          }
-
-          if (charIdx < current.text.length) {
-            currentLineNode.textContent += current.text.charAt(charIdx);
-            charIdx += 1;
-            window.setTimeout(tick, 18 + Math.random() * 22);
-            return;
-          }
-
-          appendNewlineChar();
-          lineIdx += 1;
-          charIdx = 0;
-          currentLineNode = null;
-
-          if (lineIdx < lines.length) {
-            window.setTimeout(tick, 140);
-            return;
-          }
-
-          // fade out boot overlay then reveal main
-          revealMain();
-          if (boot) {
-            boot.style.transition = "opacity 550ms ease";
-            boot.style.opacity = "0";
-            window.setTimeout(() => {
-              boot.remove();
-            }, 600);
-          }
-        }
-
-        // Ensure main is hidden until reveal
         window.requestAnimationFrame(() => {
-          tick();
+          runBootSequence();
         });
       })();
     </script>
