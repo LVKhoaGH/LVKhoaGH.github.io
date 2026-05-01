@@ -109,7 +109,7 @@
       <div class="mx-auto flex h-full max-w-5xl items-center px-5 py-10">
         <div class="w-full rounded-xl border border-[#30363d] bg-black/30 shadow-[0_0_0_1px_rgba(48,54,61,.8),_0_30px_90px_rgba(0,0,0,.7)] backdrop-blur">
           <div class="px-4 py-4">
-            <pre class="text-sm leading-relaxed text-[#c9d1d9] whitespace-pre-wrap"><span id="bootText"></span><span class="caret" aria-hidden="true"></span></pre>
+            <pre id="bootPre" class="max-h-[70vh] overflow-auto text-sm leading-relaxed text-[#c9d1d9] whitespace-pre-wrap"><span id="bootText"></span><span class="caret" aria-hidden="true"></span></pre>
           </div>
         </div>
       </div>
@@ -337,19 +337,12 @@
       (function () {
         const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         const boot = document.getElementById("boot");
+        const bootPre = document.getElementById("bootPre");
         const bootTextEl = document.getElementById("bootText");
         const portfolio = document.getElementById("portfolio");
 
         const COLOR_BASE = "#c9d1d9";
         const COLOR_CMD = "#56d364";
-
-        const LINE_1 = "System Bootstrap, Version 15.4(3)M2, RELEASE SOFTWARE (fc1)";
-        const LINE_2 = "ROM: Bootstrap program is C2900 boot loader";
-        const LINE_3 = "Press RETURN to get started!";
-        const LINE_4 = "Router> enable";
-        const LINE_5 = "Router# show levietkhoa portfolio";
-        const LINE_6 = "Building configuration...";
-        const LINE_7 = "[OK]";
 
         function revealPortfolio() {
           if (!portfolio) return;
@@ -360,23 +353,33 @@
           return new Promise((resolve) => window.setTimeout(resolve, ms));
         }
 
-        function appendLine(text, color) {
+        function scrollToBottom() {
+          if (!bootPre) return;
+          bootPre.scrollTop = bootPre.scrollHeight;
+        }
+
+        function appendText(text, color) {
           const span = document.createElement("span");
           span.style.color = color;
           span.textContent = text;
           bootTextEl.appendChild(span);
-          bootTextEl.appendChild(document.createTextNode("\n"));
+          scrollToBottom();
         }
 
-        async function typeLine(text, color, perCharMs) {
+        function appendNewline() {
+          bootTextEl.appendChild(document.createTextNode("\n"));
+          scrollToBottom();
+        }
+
+        async function typeText(text, color, perCharMs) {
           const span = document.createElement("span");
           span.style.color = color;
           bootTextEl.appendChild(span);
           for (let i = 0; i < text.length; i += 1) {
             span.textContent += text[i];
+            scrollToBottom();
             await sleep(perCharMs);
           }
-          bootTextEl.appendChild(document.createTextNode("\n"));
         }
 
         async function fadeOutBootThenReveal() {
@@ -396,31 +399,75 @@
           return;
         }
 
+        // Scenario runner (dump/type/pause) using async/await.
+        // - dump: prints text instantly, then waits delayMs (optional newline control)
+        // - type: types text char-by-char, then waits delayMs (optional newline control)
+        async function runScenario(steps) {
+          for (const step of steps) {
+            if (step.kind === "pause") {
+              await sleep(step.delayMs ?? 0);
+              continue;
+            }
+
+            const color = step.color ?? COLOR_BASE;
+            const newline = step.newline !== false;
+
+            if (step.kind === "dump") {
+              appendText(step.text ?? "", color);
+              if (newline) appendNewline();
+              await sleep(step.delayMs ?? 0);
+              continue;
+            }
+
+            if (step.kind === "type") {
+              await typeText(step.text ?? "", color, step.perCharMs ?? 80);
+              if (newline) appendNewline();
+              await sleep(step.delayMs ?? 0);
+              continue;
+            }
+          }
+        }
+
         async function runBootSequence() {
           if (!bootTextEl) return;
           bootTextEl.textContent = "";
 
-          // Lines 1–3 appear full, 800ms apart
-          appendLine(LINE_1, COLOR_BASE);
-          await sleep(800);
-          appendLine(LINE_2, COLOR_BASE);
-          await sleep(800);
-          appendLine(LINE_3, COLOR_BASE);
-          await sleep(800);
+          // NOTE: Keeping portfolio HTML unchanged. Only boot scripting updated.
+          // The detailed ISR4331 boot lines are intentionally not duplicated here;
+          // this scenario focuses on the "show ?" context-sensitive help flow.
+          const steps = [
+            // Keep the concise boot lines we already used previously
+            { kind: "dump", text: "System Bootstrap, Version 15.4(3)M2, RELEASE SOFTWARE (fc1)", delayMs: 800, color: COLOR_BASE },
+            { kind: "dump", text: "ROM: Bootstrap program is C2900 boot loader", delayMs: 800, color: COLOR_BASE },
+            { kind: "dump", text: "Press RETURN to get started!", delayMs: 800, color: COLOR_BASE },
 
-          // Line 4 typing 100ms/char, then wait 500ms
-          await typeLine(LINE_4, COLOR_CMD, 100);
-          await sleep(500);
+            // Prompt after exit already shown as levietkhoa#
+            { kind: "dump", text: "levietkhoa#", delayMs: 0, color: COLOR_BASE, newline: false },
 
-          // Line 5 typing 100ms/char, then MUST wait 3000ms
-          await typeLine(LINE_5, COLOR_CMD, 100);
-          await sleep(3000);
+            // [Type] show ? in same line (user input in green)
+            { kind: "type", text: " show ?", perCharMs: 100, delayMs: 400, color: COLOR_CMD, newline: true },
 
-          // After 3 seconds, show line 6 and 7
-          appendLine(LINE_6, COLOR_BASE);
-          appendLine(LINE_7, COLOR_BASE);
+            // dump blank line (as requested)
+            { kind: "dump", text: "", delayMs: 100, color: COLOR_BASE },
 
-          // Then wait 800ms and transition
+            // help output line
+            { kind: "dump", text: "  levietkhoa_portfolio   Display the personal portfolio and resume", delayMs: 100, color: COLOR_BASE },
+
+            // blank line
+            { kind: "dump", text: "", delayMs: 500, color: COLOR_BASE },
+
+            // prompt again
+            { kind: "dump", text: "levietkhoa#", delayMs: 0, color: COLOR_BASE, newline: false },
+
+            // [Type] show levietkhoa_portfolio (80ms/char), wait 3000ms after typing
+            { kind: "type", text: " show levietkhoa_portfolio", perCharMs: 80, delayMs: 3000, color: COLOR_CMD, newline: true },
+
+            // then dump building config and ok
+            { kind: "dump", text: "Building configuration...", delayMs: 100, color: COLOR_BASE },
+            { kind: "dump", text: "[OK]", delayMs: 500, color: COLOR_BASE },
+          ];
+
+          await runScenario(steps);
           await fadeOutBootThenReveal();
         }
 
