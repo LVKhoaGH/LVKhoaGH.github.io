@@ -434,46 +434,46 @@
 
           const steps = [
             // Boot log (more realistic)
-            { kind: "dump", text: "Initializing Hardware ...", delayMs: 100, color: COLOR_BASE },
-            { kind: "dump", text: "System integrity status: 0x610", delayMs: 100, color: COLOR_BASE },
-            { kind: "dump", text: "Rom image verified correctly", delayMs: 100, color: COLOR_BASE },
-            { kind: "dump", text: "", delayMs: 300, color: COLOR_BASE },
-            { kind: "dump", text: "System Bootstrap, Version 16.7(3r), RELEASE SOFTWARE", delayMs: 100, color: COLOR_BASE },
-            { kind: "dump", text: "Cisco ISR4331/K9 platform with 4194304 Kbytes of main memory", delayMs: 100, color: COLOR_BASE },
-            { kind: "dump", text: "Located isr4300-universalk9.16.06.04.SPA.bin", delayMs: 300, color: COLOR_BASE },
-            { kind: "type", text: "##################################################", perCharMs: 10, delayMs: 0, color: COLOR_BASE, newline: true },
-            { kind: "dump", text: "Image validated", delayMs: 200, color: COLOR_BASE },
-            { kind: "dump", text: "3 Gigabit Ethernet interfaces", delayMs: 50, color: COLOR_BASE },
-            { kind: "dump", text: "4194304K bytes of physical memory.", delayMs: 50, color: COLOR_BASE },
-            { kind: "dump", text: "", delayMs: 800, color: COLOR_BASE },
-            { kind: "dump", text: "Press RETURN to get started!", delayMs: 800, color: COLOR_BASE },
-            { kind: "dump", text: "", delayMs: 1000, color: COLOR_BASE },
+            { kind: "dump", text: "Initializing Hardware ...", delayMs: 50, color: COLOR_BASE },
+            { kind: "dump", text: "System integrity status: 0x610", delayMs: 50, color: COLOR_BASE },
+            { kind: "dump", text: "Rom image verified correctly", delayMs: 50, color: COLOR_BASE },
+            { kind: "dump", text: "", delayMs: 200, color: COLOR_BASE },
+            { kind: "dump", text: "System Bootstrap, Version 16.7(3r), RELEASE SOFTWARE", delayMs: 50, color: COLOR_BASE },
+            { kind: "dump", text: "Cisco ISR4331/K9 platform with 4194304 Kbytes of main memory", delayMs: 50, color: COLOR_BASE },
+            { kind: "dump", text: "Located isr4300-universalk9.16.06.04.SPA.bin", delayMs: 200, color: COLOR_BASE },
+            { kind: "type", text: "##################################################", perCharMs: 5, delayMs: 0, color: COLOR_BASE, newline: true },
+            { kind: "dump", text: "Image validated", delayMs: 100, color: COLOR_BASE },
+            { kind: "dump", text: "3 Gigabit Ethernet interfaces", delayMs: 30, color: COLOR_BASE },
+            { kind: "dump", text: "4194304K bytes of physical memory.", delayMs: 30, color: COLOR_BASE },
+            { kind: "dump", text: "", delayMs: 500, color: COLOR_BASE },
+            { kind: "dump", text: "Press RETURN to get started!", delayMs: 500, color: COLOR_BASE },
+            { kind: "dump", text: "", delayMs: 600, color: COLOR_BASE },
 
             // User Access Verification flow
-            { kind: "dump", text: "User Access Verification", delayMs: 100, color: COLOR_BASE },
-            { kind: "dump", text: "", delayMs: 100, color: COLOR_BASE },
-            { kind: "dump", text: "Password:  ", delayMs: 500, color: COLOR_BASE, newline: false },
-            { kind: "type", text: "*****", perCharMs: 150, delayMs: 0, color: COLOR_CMD, newline: true },
-            { kind: "dump", text: "", delayMs: 300, color: COLOR_BASE },
+            { kind: "dump", text: "User Access Verification", delayMs: 50, color: COLOR_BASE },
+            { kind: "dump", text: "", delayMs: 50, color: COLOR_BASE },
+            { kind: "dump", text: "Password: ", delayMs: 300, color: COLOR_BASE, newline: false },
+            { kind: "type", text: "*****", perCharMs: 100, delayMs: 0, color: COLOR_CMD, newline: true },
+            { kind: "dump", text: "", delayMs: 200, color: COLOR_BASE },
 
-            { kind: "dump", text: "levietkhoa> ", delayMs: 500, color: COLOR_BASE, newline: false },
-            { kind: "type", text: "enable", perCharMs: 100, delayMs: 0, color: COLOR_CMD, newline: true },
+            { kind: "dump", text: "levietkhoa>", delayMs: 300, color: COLOR_BASE, newline: false },
+            { kind: "type", text: "enable", perCharMs: 60, delayMs: 0, color: COLOR_CMD, newline: true },
 
-            { kind: "dump", text: "Password:  ", delayMs: 300, color: COLOR_BASE, newline: false },
-            { kind: "type", text: "********", perCharMs: 150, delayMs: 0, color: COLOR_CMD, newline: true },
-            { kind: "dump", text: "", delayMs: 300, color: COLOR_BASE },
+            { kind: "dump", text: "Password: ", delayMs: 200, color: COLOR_BASE, newline: false },
+            { kind: "type", text: "********", perCharMs: 100, delayMs: 0, color: COLOR_CMD, newline: true },
+            { kind: "dump", text: "", delayMs: 200, color: COLOR_BASE },
 
             // Context-sensitive help before final command
-            { kind: "dump", text: "levietkhoa# ", delayMs: 500, color: COLOR_BASE, newline: false },
-            { kind: "type", text: "show ?", perCharMs: 100, delayMs: 0, color: COLOR_CMD, newline: false },
-            { kind: "dump", text: "", delayMs: 400, color: COLOR_BASE, newline: true },
-            { kind: "dump", text: "  levietkhoa_portfolio   Display the personal portfolio and resume", delayMs: 100, color: COLOR_BASE },
+            { kind: "dump", text: "levietkhoa#", delayMs: 300, color: COLOR_BASE, newline: false },
+            { kind: "type", text: "show ?", perCharMs: 60, delayMs: 0, color: COLOR_CMD, newline: true },
+            { kind: "dump", text: "", delayMs: 200, color: COLOR_BASE },
+            { kind: "dump", text: "  levietkhoa_portfolio   Display the personal portfolio and resume", delayMs: 50, color: COLOR_BASE },
 
-            { kind: "dump", text: "levietkhoa# ", delayMs: 500, color: COLOR_BASE, newline: false },
-            { kind: "type", text: "show levietkhoa_portfolio", perCharMs: 80, delayMs: 3000, color: COLOR_CMD, newline: true },
+            { kind: "dump", text: "levietkhoa#", delayMs: 300, color: COLOR_BASE, newline: false },
+            { kind: "type", text: "show levietkhoa_portfolio", perCharMs: 50, delayMs: 2000, color: COLOR_CMD, newline: true },
 
-            { kind: "dump", text: "Building configuration...", delayMs: 100, color: COLOR_BASE },
-            { kind: "dump", text: "[OK]", delayMs: 500, color: COLOR_BASE },
+            { kind: "dump", text: "Building configuration...", delayMs: 50, color: COLOR_BASE },
+            { kind: "dump", text: "[OK]", delayMs: 300, color: COLOR_BASE },
           ];
 
           await runScenario(steps);
