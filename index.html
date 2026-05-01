@@ -108,15 +108,6 @@
     <div id="boot" class="fixed inset-0 z-50 bg-[#0d1117] text-[#c9d1d9] scanlines noise">
       <div class="mx-auto flex h-full max-w-5xl items-center px-5 py-10">
         <div class="w-full rounded-xl border border-[#30363d] bg-black/30 shadow-[0_0_0_1px_rgba(48,54,61,.8),_0_30px_90px_rgba(0,0,0,.7)] backdrop-blur">
-          <div class="flex items-center justify-between border-b border-[#30363d] px-4 py-3">
-            <div class="flex items-center gap-2 text-xs text-[#8b949e]">
-              <span class="inline-flex h-2 w-2 rounded-full bg-[#30363d]"></span>
-              <span class="inline-flex h-2 w-2 rounded-full bg-[#30363d]"></span>
-              <span class="inline-flex h-2 w-2 rounded-full bg-[#30363d]"></span>
-              <span class="ml-2">terminal://session</span>
-            </div>
-            <div class="text-xs text-[#8b949e]">boot sequence</div>
-          </div>
           <div class="px-4 py-4">
             <pre class="text-sm leading-relaxed text-[#c9d1d9] whitespace-pre-wrap"><span id="bootText"></span><span class="caret" aria-hidden="true"></span></pre>
           </div>
@@ -348,12 +339,17 @@
         const main = document.getElementById("main");
 
         const lines = [
-          "> init: ui/terminal",
-          "> load: theme=cyberpunk-dark",
-          "> probe: panels=4",
-          "> status: OK",
-          "> launch: portfolio",
-          ""
+          { text: "System Bootstrap, Version 15.4(3)M2, RELEASE SOFTWARE (fc1)", tone: "base" },
+          { text: "Compiled Thu 01-May-26 22:42 by prod_rel_team", tone: "base" },
+          { text: "ROM: Bootstrap program is C2900 boot loader", tone: "base" },
+          { text: "", tone: "base" },
+          { text: "Press RETURN to get started!", tone: "base" },
+          { text: "", tone: "base" },
+          { text: "Router> enable", tone: "cmd" },
+          { text: "Router# show levietkhoa portfolio", tone: "cmd" },
+          { text: "Building configuration...", tone: "base" },
+          { text: "[OK]", tone: "base" },
+          { text: "", tone: "base" },
         ];
 
         function revealMain() {
@@ -369,23 +365,43 @@
 
         let lineIdx = 0;
         let charIdx = 0;
-        let buffer = "";
+        let currentLineNode = null;
+
+        function appendNewLineNode(tone) {
+          const span = document.createElement("span");
+          if (tone === "cmd") {
+            // Keep it terminal-like, but emphasize prompt/command.
+            span.className = "text-[#56d364]";
+          } else {
+            span.className = "text-[#c9d1d9]";
+          }
+          bootTextEl.appendChild(span);
+          currentLineNode = span;
+        }
+
+        function appendNewlineChar() {
+          bootTextEl.appendChild(document.createTextNode("\n"));
+        }
 
         function tick() {
-          const current = lines[lineIdx] ?? "";
+          const current = lines[lineIdx];
+          if (!current) return;
 
-          if (charIdx < current.length) {
-            buffer += current.charAt(charIdx);
+          if (!currentLineNode) {
+            appendNewLineNode(current.tone);
+          }
+
+          if (charIdx < current.text.length) {
+            currentLineNode.textContent += current.text.charAt(charIdx);
             charIdx += 1;
-            bootTextEl.textContent = buffer;
             window.setTimeout(tick, 18 + Math.random() * 22);
             return;
           }
 
-          buffer += "\n";
-          bootTextEl.textContent = buffer;
+          appendNewlineChar();
           lineIdx += 1;
           charIdx = 0;
+          currentLineNode = null;
 
           if (lineIdx < lines.length) {
             window.setTimeout(tick, 140);
