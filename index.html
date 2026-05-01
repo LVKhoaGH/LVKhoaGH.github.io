@@ -3,48 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Viet Khoa | Network Engineer Portfolio</title>
+    <title>Lê Viết Khoa | Network Engineer Portfolio</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background-color: #f0f2f5; }
-        .container { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-        h1 { color: #1a73e8; border-bottom: 2px solid #1a73e8; padding-bottom: 10px; }
-        .badge { background: #28a745; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.9em; font-weight: bold; margin-right: 10px; }
-        .badge-ai { background: #6f42c1; }
-        .section-title { font-weight: bold; color: #444; margin-top: 25px; display: block; font-size: 1.2em; }
-        ul { padding-left: 20px; }
-        .contact { margin-top: 30px; font-style: italic; color: #666; }
+        :root {
+            --primary: #0052cc;
+            --secondary: #172b4d;
+            --bg-color: #f4f5f7;
+            --text-main: #333;
+            --border-color: #dfe1e6;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+        }
+
+        header {
+            background-color: var(--secondary);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--primary);
+        }
+
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        header p { font-size: 1.2rem; color: #b3bac5; }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            color: var(--primary);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .skill-box {
+            background: #fdfdfd;
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 6px;
+        }
+        .skill-box h4 { color: var(--secondary); margin-bottom: 10px; }
+        .skill-box ul { list-style-type: square; padding-left: 20px; font-size: 0.95rem; }
+
+        /* Projects */
+        .project-item { margin-bottom: 25px; }
+        .project-item:last-child { margin-bottom: 0; }
+        .project-title { font-weight: bold; font-size: 1.2rem; color: var(--secondary); }
+        .project-tech { font-size: 0.85rem; color: #5e6c84; font-style: italic; margin-bottom: 10px; }
+        .project-details { list-style-type: disc; padding-left: 20px; }
+        .project-details li { margin-bottom: 5px; }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            background: #e8f0fe;
+            color: var(--primary);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 5px;
+            margin-top: 5px;
+        }
+
+        /* Footer / Contact */
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .contact-info a { color: var(--primary); text-decoration: none; font-weight: bold; }
+        .contact-info a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-    <div class="container">
+
+    <header>
         <h1>Lê Viết Khoa</h1>
-        <p>
-            <span class="badge">CCNA Certified</span> 
-            <span class="badge">CCNP Roadmap</span>
-            <span class="badge badge-ai">Network Automation</span>
-        </p>
-
-        <span class="section-title">Objective</span>
-        <p>Final-year Computer Networking student at UNETI. Aiming to become a **Senior Network Engineer (CCIE)** with a focus on **AIOps** and **High Availability** infrastructures for SI, ISP, and Banking sectors.</p>
-
-        <span class="section-title">Technical Expertise</span>
-        <ul>
-            <li><strong>Core Routing:</strong> OSPF, BGP, Static Route on Cisco Catalyst & Nexus.</li>
-            <li><strong>Switching:</strong> STP/RSTP, VLAN, EtherChannel, Port Security.</li>
-            <li><strong>Network Security:</strong> Firewalls (Fortigate, ASA), ACL, VPN.</li>
-            <li><strong>Virtualization & Lab:</strong> EVE-NG, VMware, Dell Latitude E5470 (16GB RAM).</li>
-            <li><strong>Automation:</strong> Python, Ansible, Netmiko.</li>
-        </ul>
-
-        <span class="section-title">Featured Projects</span>
-        <ul>
-            <li><strong>Enterprise Core Network Simulation:</strong> Designed a redundant campus network using OSPF and STP for maximum uptime.</li>
-            <li><strong>Log Analysis with AI:</strong> Investigating AIOps to predict system failures and analyze system logs.</li>
-        </ul>
-
-        <div class="contact">
-            Email: [Địa chỉ email của bạn] | Location: Thanh Tri, Hanoi
+        <p>Network Engineer</p>
+        <div class="contact-info">
+            <a href="mailto:khoalv@example.com">Email: khoalv@example.com</a>
+            <a href="https://github.com/LVKhoaGH">GitHub: LVKhoaGH</a>
+            <a href="#">LinkedIn</a>
         </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- ABOUT SECTION -->
+        <div class="section">
+            <h2 class="section-title">Về tôi</h2>
+            <p>Là một Kỹ sư Mạng (Network Engineer) trẻ với nền tảng kiến thức vững chắc về quy hoạch hạ tầng (Routing/Switching), bảo mật hệ thống và quản trị máy chủ. Ưu tiên hàng đầu trong thiết kế mạng của tôi là tính <strong>Dự phòng (Redundancy)</strong>, <strong>Bảo mật (Security)</strong> và <strong>Khả năng mở rộng (Scalability)</strong>. Luôn sẵn sàng triển khai các giải pháp mạng thực tế trên thiết bị vật lý và môi trường Cloud.</p>
+        </div>
+
+        <!-- TECHNICAL SKILLS SECTION -->
+        <div class="section">
+            <h2 class="section-title">Kỹ năng chuyên môn</h2>
+            <div class="skills-grid">
+                <div class="skill-box">
+                    <h4>Routing & Switching</h4>
+                    <ul>
+                        <li>Định tuyến: OSPF, Static Route, IPv6 Routing.</li>
+                        <li>Chuyển mạch: VLAN, STP (Rapid PVST+), Layer-2/Layer-3 EtherChannel.</li>
+                        <li>Dự phòng gateway: HSRP.</li>
+                        <li>Wireless: Cấu hình WLC (Wireless LAN Controller).</li>
+                    </ul>
+                </div>
+                <div class="skill-box">
+                    <h4>Network Security</h4>
+                    <ul>
+                        <li>Fortigate: SNAT/DNAT, Firewall Policy.</li>
+                        <li>Security Profiles: Web Filter, Antivirus, IPS, Traffic Shaping (chống DoS).</li>
+                        <li>Layer 2 Security: Port Security, DHCP Snooping, DAI.</li>
+                        <li>Access Control: ACLs, Local Auth.</li>
+                    </ul>
+                </div>
+                <div class="skill-box">
+                    <h4>System Administration</h4>
+                    <ul>
+                        <li>Windows Server 2016: ADDS (Domain/OU), DNS, DHCP, File Server, Remote Desktop.</li>
+                        <li>Linux (Rocky 9): SSH, vsftpd, BIND, Postfix/Dovecot (Mail), Samba, NFS.</li>
+                    </ul>
+                </div>
+                <div class="skill-box">
+                    <h4>Cloud & Monitoring</h4>
+                    <ul>
+                        <li>Google Cloud Platform (GCP): Khởi tạo VPC, VPC Peering, Firewall Rules, Compute Engine.</li>
+                        <li>Monitoring: PRTG Network Monitor (giám sát băng thông qua SNMP), GCP Cloud Monitoring.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECTS SECTION -->
+        <div class="section">
+            <h2 class="section-title">Dự án & Lab tiêu biểu</h2>
+
+            <div class="project-item">
+                <div class="project-title">1. Enterprise Network Architecture (CCNA Mega Lab)</div>
+                <div class="project-tech">Cisco IOS, OSPF, HSRP, Rapid PVST+, EtherChannel, IPv6</div>
+                <ul class="project-details">
+                    <li>Thiết kế cấu trúc mạng Campus với các phân vùng VLAN riêng biệt cho PC, VoIP, Server và Wi-Fi.</li>
+                    <li>Đảm bảo tính dự phòng (High Availability) bằng cách cấu hình HSRP cho Default Gateway và Layer-2/Layer-3 EtherChannel để gộp băng thông.</li>
+                    <li>Tối ưu hóa Spanning Tree với Rapid PVST+ và bảo vệ hạ tầng Layer 2 bằng Port Security, DHCP Snooping, và Dynamic ARP Inspection (DAI).</li>
+                    <li>Triển khai IPv6 Routing tĩnh và cấu hình cơ bản mạng không dây qua WLC.</li>
+                </ul>
+            </div>
+
+            <div class="project-item">
+                <div class="project-title">2. Edge Security & Traffic Management</div>
+                <div class="project-tech">Fortigate Firewall (GUI), SNAT/DNAT, Security Profiles, Traffic Shaping</div>
+                <ul class="project-details">
+                    <li>Cấu hình Firewall Policy để kiểm soát luồng truy cập; thiết lập SNAT cho người dùng LAN ra Internet và DNAT (Virtual IP) để publish dịch vụ nội bộ.</li>
+                    <li>Áp dụng các lớp bảo mật: Chặn tải file chứa mã độc (kiểm thử với file EICAR) bằng Antivirus, chặn truy cập website không mong muốn bằng Web Filter.</li>
+                    <li>Bảo vệ hệ thống khỏi tấn công từ chối dịch vụ (DoS Anomalies) và cấu hình Traffic Shaping để giới hạn băng thông (Max/Min Bandwidth) cho từng nhóm người dùng.</li>
+                    <li>Thực hiện backup/restore cấu hình và cập nhật Firmware thiết bị an toàn.</li>
+                </ul>
+            </div>
+
+            <div class="project-item">
+                <div class="project-title">3. System & Cloud Infrastructure Deployment</div>
+                <div class="project-tech">Windows Server 2016, Linux Rocky 9, Google Cloud Platform (GCP)</div>
+                <ul class="project-details">
+                    <li><strong>Windows Server:</strong> Xây dựng hệ thống quản trị tập trung ADDS (Domain <i>lekhoa.local</i>), phân quyền truy cập File Server qua Group Policy, cấp phát IP tự động (DHCP) và phân giải tên miền (DNS).</li>
+                    <li><strong>Linux:</strong> Cài đặt và vận hành các dịch vụ cốt lõi: FTP (vsftpd), Mail Server (postfix/dovecot), chia sẻ file đa nền tảng (Samba/NFS) và đồng bộ thời gian (NTP).</li>
+                    <li><strong>GCP:</strong> Thiết lập kiến trúc mạng Cloud với VPC, kết nối các VPC độc lập bằng VPC Peering và viết Firewall Rules bảo vệ các máy ảo (VM).</li>
+                </ul>
+            </div>
+
+            <div class="project-item">
+                <div class="project-title">4. Network Monitoring & Alerting System</div>
+                <div class="project-tech">PRTG Network Monitor, SNMP, GCP Monitoring</div>
+                <ul class="project-details">
+                    <li>Tích hợp PRTG giám sát thiết bị mạng vật lý (Cisco Router) qua giao thức SNMP (Read-Only).</li>
+                    <li>Thiết lập các Sensor để theo dõi trạng thái Up/Down của Interface và đo lường băng thông Real-time.</li>
+                    <li>Sử dụng GCP Monitoring tạo các Dashboard (Widget) theo dõi tài nguyên CPU của máy ảo và thiết lập Alerting Policy cảnh báo khi quá tải.</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- EDUCATION SECTION -->
+        <div class="section">
+            <h2 class="section-title">Học vấn</h2>
+            <div class="project-item">
+                <div class="project-title">Đại học Kinh tế Kỹ thuật Công nghiệp (UNETI)</div>
+                <p>Chuyên ngành: Mạng máy tính & Truyền thông dữ liệu | Khóa: 2022 - 2026</p>
+            </div>
+        </div>
+
     </div>
+
 </body>
 </html>
