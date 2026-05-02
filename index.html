@@ -107,6 +107,23 @@
       @media (prefers-reduced-motion: reduce) {
         .viewFade { transition: none; transform: none; opacity: 1; }
       }
+
+      /* Dashboard nav: Forti-like active state */
+      .dash-tab {
+        border-left: 3px solid transparent;
+        border-bottom: 3px solid transparent;
+      }
+      .dash-tab.dash-tab-active {
+        color: #56d364;
+        border-left-color: #56d364;
+        background: rgba(0,0,0,.35);
+      }
+      @media (max-width: 1023px) {
+        .dash-tab.dash-tab-active {
+          border-left-color: transparent;
+          border-bottom-color: #56d364;
+        }
+      }
     </style>
 </head>
 <body>
@@ -152,135 +169,113 @@
       </header>
 
       <main id="main" class="mx-auto max-w-6xl px-5 py-8">
-        <div id="portfolio" class="reveal">
-          <!-- Fortigate-like Dashboard (2-column) -->
-          <div class="flex flex-col gap-4 lg:flex-row">
-            <!-- Sidebar (w-1/4) -->
-            <aside class="w-full lg:w-1/4 rounded-xl border border-[#30363d] bg-black/25 backdrop-blur">
+        <div id="portfolio" class="reveal font-mono">
+          <!-- Forti WebUI-style dashboard: 1/4 sidebar + 3/4 main (grid on lg) -->
+          <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:items-stretch">
+            <aside class="rounded-xl border border-[#30363d] bg-[#0d1117] lg:col-span-1">
               <div class="border-b border-[#30363d] px-4 py-3">
-                <div class="text-xs text-[#8b949e]">menu</div>
+                <div class="text-xs uppercase tracking-wider text-[#8b949e]">Menu tree</div>
               </div>
-              <nav id="dashMenu" class="flex flex-row gap-2 overflow-auto p-3 text-sm lg:flex-col lg:gap-2">
-                <button type="button" data-tab="objective" class="dash-tab shrink-0 lg:shrink rounded-md border border-[#30363d] bg-black/20 px-3 py-2 text-left text-[#c9d1d9] hover:border-[#56d364] hover:bg-black/30">[1] Objective</button>
-                <button type="button" data-tab="skills" class="dash-tab shrink-0 lg:shrink rounded-md border border-[#30363d] bg-black/20 px-3 py-2 text-left text-[#c9d1d9] hover:border-[#56d364] hover:bg-black/30">[2] Technical Skills</button>
-                <button type="button" data-tab="projects" class="dash-tab shrink-0 lg:shrink rounded-md border border-[#30363d] bg-black/20 px-3 py-2 text-left text-[#c9d1d9] hover:border-[#56d364] hover:bg-black/30">[3] Projects Log</button>
-                <button type="button" data-tab="expedu" class="dash-tab shrink-0 lg:shrink rounded-md border border-[#30363d] bg-black/20 px-3 py-2 text-left text-[#c9d1d9] hover:border-[#56d364] hover:bg-black/30">[4] Exp & Education</button>
+              <nav id="dashMenu" class="flex flex-row gap-1 overflow-x-auto p-2 text-sm lg:flex-col lg:gap-0 lg:overflow-visible lg:p-0">
+                <button type="button" data-tab="objective" class="dash-tab dash-tab-active min-w-[9.5rem] shrink-0 rounded-md border border-[#30363d] bg-black/30 px-3 py-2.5 text-left text-[#c9d1d9] transition-colors hover:bg-black/45 lg:min-w-0 lg:rounded-none lg:border-0 lg:border-b lg:border-[#30363d]/60 lg:bg-transparent lg:px-4">[1] Objective</button>
+                <button type="button" data-tab="skills" class="dash-tab min-w-[9.5rem] shrink-0 rounded-md border border-[#30363d] bg-black/30 px-3 py-2.5 text-left text-[#c9d1d9] transition-colors hover:bg-black/45 lg:min-w-0 lg:rounded-none lg:border-0 lg:border-b lg:border-[#30363d]/60 lg:bg-transparent lg:px-4">[2] Technical Skills</button>
+                <button type="button" data-tab="projects" class="dash-tab min-w-[9.5rem] shrink-0 rounded-md border border-[#30363d] bg-black/30 px-3 py-2.5 text-left text-[#c9d1d9] transition-colors hover:bg-black/45 lg:min-w-0 lg:rounded-none lg:border-0 lg:border-b lg:border-[#30363d]/60 lg:bg-transparent lg:px-4">[3] Projects Log</button>
+                <button type="button" data-tab="expedu" class="dash-tab min-w-[9.5rem] shrink-0 rounded-md border border-[#30363d] bg-black/30 px-3 py-2.5 text-left text-[#c9d1d9] transition-colors hover:bg-black/45 lg:min-w-0 lg:rounded-none lg:border-0 lg:border-b lg:border-[#30363d]/60 lg:bg-transparent lg:px-4">[4] Exp &amp; Education</button>
               </nav>
             </aside>
 
-            <!-- Main panel (w-3/4) -->
-            <section class="w-full lg:w-3/4 rounded-xl border border-[#30363d] bg-black/25 backdrop-blur">
-              <div class="border-b border-[#30363d] px-4 py-3">
-                <pre class="whitespace-pre-wrap text-sm leading-relaxed"><span class="text-[#56d364]" id="tabCmd"></span><span class="caret" aria-hidden="true"></span></pre>
+            <section class="flex min-h-[320px] flex-col rounded-xl border border-[#30363d] bg-[#0d1117] lg:col-span-3">
+              <div class="shrink-0 border-b border-[#30363d] bg-black/20 px-4 py-3">
+                <pre class="m-0 whitespace-pre-wrap font-mono text-sm leading-relaxed text-[#c9d1d9]"><span class="text-[#8b949e]">Router#</span> <span class="text-[#56d364]" id="tabCmd"></span><span class="caret" aria-hidden="true"></span></pre>
               </div>
 
-              <div class="p-4">
-                <!-- Tab: Objective -->
-                <section id="tab-objective" class="dash-panel viewFade space-y-4">
-                  <div class="rounded-xl border border-[#30363d] bg-black/15">
-                    <div class="flex items-center justify-between border-b border-[#30363d] px-4 py-3">
-                      <h2 class="font-semibold tracking-wide text-[#56d364]">Về tôi</h2>
-                      <div class="text-xs text-[#8b949e]">Objective</div>
-                    </div>
-                    <div class="px-4 py-4 text-[#c9d1d9] leading-relaxed">
-                      <p>Là một Kỹ sư Mạng (Network Engineer) trẻ với nền tảng kiến thức vững chắc về quy hoạch hạ tầng (Routing/Switching), bảo mật hệ thống và quản trị máy chủ. Ưu tiên hàng đầu trong thiết kế mạng của tôi là tính <strong>Dự phòng (Redundancy)</strong>, <strong>Bảo mật (Security)</strong> và <strong>Khả năng mở rộng (Scalability)</strong>. Luôn sẵn sàng triển khai các giải pháp mạng thực tế trên thiết bị vật lý và môi trường Cloud.</p>
-                    </div>
-                  </div>
-                </section>
-
-                <!-- Tab: Technical Skills -->
-                <section id="tab-skills" class="dash-panel viewFade hidden space-y-4">
-                  <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
-                    <div class="rounded-xl border border-[#30363d] bg-black/15 p-4">
-                      <h3 class="font-semibold text-[#56d364]">Core Network</h3>
-                      <ul class="mt-3 list-disc pl-5 text-[#c9d1d9] space-y-1.5">
-                        <li>Định tuyến: OSPF, Static Route, IPv6 Routing.</li>
-                        <li>Chuyển mạch: VLAN, STP (Rapid PVST+), Layer-2/Layer-3 EtherChannel.</li>
-                        <li>Dự phòng gateway: HSRP.</li>
-                        <li>Wireless: Cấu hình WLC (Wireless LAN Controller).</li>
-                      </ul>
-                    </div>
-                    <div class="rounded-xl border border-[#30363d] bg-black/15 p-4">
-                      <h3 class="font-semibold text-[#56d364]">Network Security</h3>
-                      <ul class="mt-3 list-disc pl-5 text-[#c9d1d9] space-y-1.5">
-                        <li>Fortigate: SNAT/DNAT, Firewall Policy.</li>
-                        <li>Security Profiles: Web Filter, Antivirus, IPS, Traffic Shaping (chống DoS).</li>
-                        <li>Layer 2 Security: Port Security, DHCP Snooping, DAI.</li>
-                        <li>Access Control: ACLs, Local Auth.</li>
-                      </ul>
-                    </div>
-                    <div class="rounded-xl border border-[#30363d] bg-black/15 p-4">
-                      <h3 class="font-semibold text-[#56d364]">System Basic & Mon</h3>
-                      <ul class="mt-3 list-disc pl-5 text-[#c9d1d9] space-y-1.5">
-                        <li>Windows Server 2016: ADDS (Domain/OU), DNS, DHCP, File Server, Remote Desktop.</li>
-                        <li>Linux (Rocky 9): SSH, vsftpd, BIND, Postfix/Dovecot (Mail), Samba, NFS.</li>
-                        <li>Google Cloud Platform (GCP): Khởi tạo VPC, VPC Peering, Firewall Rules, Compute Engine.</li>
-                        <li>Monitoring: PRTG Network Monitor (giám sát băng thông qua SNMP), GCP Cloud Monitoring.</li>
-                      </ul>
+              <div class="relative flex-1 p-4">
+                <!-- Tab 1: Objective -->
+                <section id="tab-objective" class="dash-panel viewFade hidden space-y-4">
+                  <div class="rounded-lg border border-[#30363d] bg-black/20">
+                    <div class="border-b border-[#30363d] px-4 py-2.5 text-xs text-[#8b949e]">objective / summary</div>
+                    <div class="grid gap-4 p-4 md:grid-cols-2">
+                      <div>
+                        <h2 class="text-sm font-semibold text-[#56d364]">Mục tiêu ngắn hạn</h2>
+                        <p class="mt-2 text-sm leading-relaxed text-[#c9d1d9]">CCNA thực tế</p>
+                      </div>
+                      <div>
+                        <h2 class="text-sm font-semibold text-[#56d364]">Mục tiêu trung hạn</h2>
+                        <p class="mt-2 text-sm leading-relaxed text-[#c9d1d9]">CCNP Encor, Security, Network Engineer</p>
+                      </div>
                     </div>
                   </div>
                 </section>
 
-                <!-- Tab: Projects Log -->
-                <section id="tab-projects" class="dash-panel viewFade hidden space-y-4">
-                  <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-                    <article class="rounded-xl border border-[#30363d] bg-black/15 p-4">
-                      <div class="text-[#56d364] font-semibold">1. Enterprise Network Architecture (CCNA Mega Lab)</div>
-                      <div class="mt-1 text-xs text-[#8b949e]">Cisco IOS, OSPF, HSRP, Rapid PVST+, EtherChannel, IPv6</div>
-                      <ul class="mt-3 list-disc pl-5 text-[#c9d1d9] space-y-1.5">
-                        <li>Thiết kế cấu trúc mạng Campus với các phân vùng VLAN riêng biệt cho PC, VoIP, Server và Wi-Fi.</li>
-                        <li>Đảm bảo tính dự phòng (High Availability) bằng cách cấu hình HSRP cho Default Gateway và Layer-2/Layer-3 EtherChannel để gộp băng thông.</li>
-                        <li>Tối ưu hóa Spanning Tree với Rapid PVST+ và bảo vệ hạ tầng Layer 2 bằng Port Security, DHCP Snooping, và Dynamic ARP Inspection (DAI).</li>
-                        <li>Triển khai IPv6 Routing tĩnh và cấu hình cơ bản mạng không dây qua WLC.</li>
+                <!-- Tab 2: Technical Skills (3 pillars) -->
+                <section id="tab-skills" class="dash-panel viewFade hidden">
+                  <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
+                    <div class="rounded-lg border border-[#30363d] bg-black/20 p-4">
+                      <h3 class="border-b border-[#30363d] pb-2 text-sm font-semibold text-[#56d364]">Core Network</h3>
+                      <ul class="mt-3 list-none space-y-1.5 text-sm text-[#c9d1d9]">
+                        <li><span class="text-[#8b949e]">•</span> VLAN</li>
+                        <li><span class="text-[#8b949e]">•</span> Trunking</li>
+                        <li><span class="text-[#8b949e]">•</span> Inter-VLAN Routing</li>
+                        <li><span class="text-[#8b949e]">•</span> EtherChannel</li>
+                        <li><span class="text-[#8b949e]">•</span> FHRP</li>
+                        <li><span class="text-[#8b949e]">•</span> OSPF</li>
+                        <li><span class="text-[#8b949e]">•</span> Static Route</li>
+                        <li><span class="text-[#8b949e]">•</span> Subnetting</li>
                       </ul>
-                    </article>
-                    <article class="rounded-xl border border-[#30363d] bg-black/15 p-4">
-                      <div class="text-[#56d364] font-semibold">2. Edge Security & Traffic Management</div>
-                      <div class="mt-1 text-xs text-[#8b949e]">Fortigate Firewall (GUI), SNAT/DNAT, Security Profiles, Traffic Shaping</div>
-                      <ul class="mt-3 list-disc pl-5 text-[#c9d1d9] space-y-1.5">
-                        <li>Cấu hình Firewall Policy để kiểm soát luồng truy cập; thiết lập SNAT cho người dùng LAN ra Internet và DNAT (Virtual IP) để publish dịch vụ nội bộ.</li>
-                        <li>Áp dụng các lớp bảo mật: Chặn tải file chứa mã độc (kiểm thử với file EICAR) bằng Antivirus, chặn truy cập website không mong muốn bằng Web Filter.</li>
-                        <li>Bảo vệ hệ thống khỏi tấn công từ chối dịch vụ (DoS Anomalies) và cấu hình Traffic Shaping để giới hạn băng thông (Max/Min Bandwidth) cho từng nhóm người dùng.</li>
-                        <li>Thực hiện backup/restore cấu hình và cập nhật Firmware thiết bị an toàn.</li>
+                    </div>
+                    <div class="rounded-lg border border-[#30363d] bg-black/20 p-4">
+                      <h3 class="border-b border-[#30363d] pb-2 text-sm font-semibold text-[#56d364]">Network Security</h3>
+                      <ul class="mt-3 list-none space-y-1.5 text-sm text-[#c9d1d9]">
+                        <li><span class="text-[#8b949e]">•</span> NAT</li>
+                        <li><span class="text-[#8b949e]">•</span> Policy</li>
+                        <li><span class="text-[#8b949e]">•</span> ACL</li>
+                        <li><span class="text-[#8b949e]">•</span> VPN</li>
+                        <li><span class="text-[#8b949e]">•</span> DoS Protection</li>
+                        <li><span class="text-[#8b949e]">•</span> Web Filter</li>
+                        <li><span class="text-[#8b949e]">•</span> Antivirus</li>
                       </ul>
-                    </article>
-                    <article class="rounded-xl border border-[#30363d] bg-black/15 p-4">
-                      <div class="text-[#56d364] font-semibold">3. System & Cloud Infrastructure Deployment</div>
-                      <div class="mt-1 text-xs text-[#8b949e]">Windows Server 2016, Linux Rocky 9, Google Cloud Platform (GCP)</div>
-                      <ul class="mt-3 list-disc pl-5 text-[#c9d1d9] space-y-1.5">
-                        <li><strong>Windows Server:</strong> Xây dựng hệ thống quản trị tập trung ADDS (Domain <i>lekhoa.local</i>), phân quyền truy cập File Server qua Group Policy, cấp phát IP tự động (DHCP) và phân giải tên miền (DNS).</li>
-                        <li><strong>Linux:</strong> Cài đặt và vận hành các dịch vụ cốt lõi: FTP (vsftpd), Mail Server (postfix/dovecot), chia sẻ file đa nền tảng (Samba/NFS) và đồng bộ thời gian (NTP).</li>
-                        <li><strong>GCP:</strong> Thiết lập kiến trúc mạng Cloud với VPC, kết nối các VPC độc lập bằng VPC Peering và viết Firewall Rules bảo vệ các máy ảo (VM).</li>
+                    </div>
+                    <div class="rounded-lg border border-[#30363d] bg-black/20 p-4">
+                      <h3 class="border-b border-[#30363d] pb-2 text-sm font-semibold text-[#56d364]">System Basic &amp; Mon</h3>
+                      <ul class="mt-3 list-none space-y-1.5 text-sm text-[#c9d1d9]">
+                        <li><span class="text-[#8b949e]">•</span> Linux Rocky 9</li>
+                        <li><span class="text-[#8b949e]">•</span> Windows Server</li>
+                        <li><span class="text-[#8b949e]">•</span> GCP (VM, VPC, Peering)</li>
+                        <li><span class="text-[#8b949e]">•</span> PRTG (SNMP)</li>
                       </ul>
-                    </article>
-                    <article class="rounded-xl border border-[#30363d] bg-black/15 p-4">
-                      <div class="text-[#56d364] font-semibold">4. Network Monitoring & Alerting System</div>
-                      <div class="mt-1 text-xs text-[#8b949e]">PRTG Network Monitor, SNMP, GCP Monitoring</div>
-                      <ul class="mt-3 list-disc pl-5 text-[#c9d1d9] space-y-1.5">
-                        <li>Tích hợp PRTG giám sát thiết bị mạng vật lý (Cisco Router) qua giao thức SNMP (Read-Only).</li>
-                        <li>Thiết lập các Sensor để theo dõi trạng thái Up/Down của Interface và đo lường băng thông Real-time.</li>
-                        <li>Sử dụng GCP Monitoring tạo các Dashboard (Widget) theo dõi tài nguyên CPU của máy ảo và thiết lập Alerting Policy cảnh báo khi quá tải.</li>
-                      </ul>
-                    </article>
+                    </div>
                   </div>
                 </section>
 
-                <!-- Tab: Exp & Education -->
-                <section id="tab-expedu" class="dash-panel viewFade hidden space-y-4">
-                  <div class="rounded-xl border border-[#30363d] bg-black/15 p-4">
-                    <h3 class="font-semibold text-[#56d364]">Experience</h3>
-                    <p class="mt-2 text-sm text-[#8b949e]">Chưa có dữ liệu trong portfolio hiện tại.</p>
+                <!-- Tab 3: Projects Log -->
+                <section id="tab-projects" class="dash-panel viewFade hidden space-y-3">
+                  <article class="rounded-lg border border-[#30363d] bg-black/20 p-4">
+                    <h3 class="text-sm font-semibold text-[#56d364]">Network Config</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-[#c9d1d9]">Mô phỏng mạng CCNA, VLAN, OSPF, HSRP.</p>
+                  </article>
+                  <article class="rounded-lg border border-[#30363d] bg-black/20 p-4">
+                    <h3 class="text-sm font-semibold text-[#56d364]">Firewall Fortigate</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-[#c9d1d9]">NAT, Web Filter, EICAR, Traffic Shaping.</p>
+                  </article>
+                  <article class="rounded-lg border border-[#30363d] bg-black/20 p-4">
+                    <h3 class="text-sm font-semibold text-[#56d364]">Windows Server 2016</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-[#c9d1d9]">ADDS, DNS, DHCP, File Server.</p>
+                  </article>
+                </section>
+
+                <!-- Tab 4: Exp & Education -->
+                <section id="tab-expedu" class="dash-panel viewFade hidden space-y-3">
+                  <div class="rounded-lg border border-[#30363d] bg-black/20 p-4">
+                    <h3 class="text-sm font-semibold text-[#56d364]">Experience</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-[#c9d1d9]">Thực tập sinh VNPT Technology (Kiểm định &amp; Troubleshoot thiết bị mạng).</p>
                   </div>
-                  <div class="rounded-xl border border-[#30363d] bg-black/15 p-4">
-                    <h3 class="font-semibold text-[#56d364]">Education</h3>
-                    <div class="mt-2 text-[#c9d1d9]">
-                      <div class="text-lg font-semibold">Đại học Kinh tế Kỹ thuật Công nghiệp (UNETI)</div>
-                      <p class="mt-1">Chuyên ngành: Mạng máy tính & Truyền thông dữ liệu | Khóa: 2022 - 2026</p>
-                    </div>
+                  <div class="rounded-lg border border-[#30363d] bg-black/20 p-4">
+                    <h3 class="text-sm font-semibold text-[#56d364]">Education</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-[#c9d1d9]">Đại học UNETI (2022-2026).</p>
                   </div>
-                  <div class="rounded-xl border border-[#30363d] bg-black/15 p-4">
-                    <h3 class="font-semibold text-[#56d364]">Certifications</h3>
-                    <p class="mt-2 text-sm text-[#8b949e]">Chưa có dữ liệu trong portfolio hiện tại.</p>
+                  <div class="rounded-lg border border-[#30363d] bg-black/20 p-4">
+                    <h3 class="text-sm font-semibold text-[#56d364]">Certifications</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-[#c9d1d9]">CCNA (Học viện BKACAD), Fortinet FCA.</p>
                   </div>
                 </section>
               </div>
@@ -371,63 +366,53 @@
 
           const menuButtons = Array.from(document.querySelectorAll(".dash-tab"));
           const panels = Array.from(document.querySelectorAll(".dash-panel"));
+          let tabSwitchGen = 0;
 
-          function setActive(tabId) {
+          function setMenuActive(tabId) {
             menuButtons.forEach((b) => {
               const active = b.getAttribute("data-tab") === tabId;
-              if (active) {
-                b.classList.add("text-[#56d364]");
-                b.classList.remove("text-[#c9d1d9]");
-                b.style.borderLeft = "4px solid #56d364";
-              } else {
-                b.classList.remove("text-[#56d364]");
-                b.classList.add("text-[#c9d1d9]");
-                b.style.borderLeft = "";
-              }
-            });
-
-            panels.forEach((p) => {
-              const match = p.id === `tab-${tabId}`;
-              if (match) {
-                p.classList.remove("hidden");
-              } else {
-                p.classList.add("hidden");
-              }
+              b.classList.toggle("dash-tab-active", active);
             });
           }
 
           async function typeHeader(text) {
             tabCmd.textContent = "";
+            const perChar = prefersReduced ? 0 : 10;
             for (let i = 0; i < text.length; i += 1) {
               tabCmd.textContent += text[i];
-              await sleep(18);
+              if (perChar > 0) await sleep(perChar);
             }
           }
 
           async function switchTab(tabId) {
-            // hide all first
+            const myGen = ++tabSwitchGen;
+
             panels.forEach((p) => {
               p.classList.add("hidden");
               p.classList.remove("on");
             });
 
-            setActive(tabId);
+            setMenuActive(tabId);
+
             const panel = document.getElementById(`tab-${tabId}`);
             if (!panel) return;
 
             const commands = {
-              objective: "Router# show objective...",
-              skills: "Router# show technical_skills...",
-              projects: "Router# show projects_log...",
-              expedu: "Router# show exp_education...",
+              objective: "show objective...",
+              skills: "show technical_skills...",
+              projects: "show projects_log...",
+              expedu: "show exp_education...",
             };
 
-            await typeHeader(commands[tabId] ?? "Router# show status...");
-            await sleep(120);
+            await typeHeader(commands[tabId] ?? "show status...");
+            await sleep(prefersReduced ? 0 : 120);
 
-            // fade in panel
+            if (myGen !== tabSwitchGen) return;
+
+            panel.classList.remove("hidden");
+            void panel.offsetWidth;
             panel.classList.add("on");
-            // style links inside panel
+
             const links = panel.querySelectorAll("a");
             links.forEach((a) => (a.style.color = COLOR_LINK));
           }
