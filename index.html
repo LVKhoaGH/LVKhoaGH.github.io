@@ -184,98 +184,110 @@
               </nav>
             </aside>
 
-            <section class="flex min-h-[320px] flex-col rounded-xl border border-[#30363d] bg-[#0d1117] lg:col-span-3">
+            <section class="flex min-h-[min(100vh,920px)] flex-col rounded-xl border border-[#30363d] bg-[#0d1117] lg:col-span-3">
               <div class="shrink-0 border-b border-[#30363d] bg-black/20 px-4 py-3">
                 <pre class="m-0 whitespace-pre-wrap font-mono text-sm leading-relaxed text-[#c9d1d9]"><span class="text-[#8b949e]">Router#</span> <span class="text-[#56d364]" id="tabCmd"></span><span class="caret" aria-hidden="true"></span></pre>
               </div>
 
-              <div class="relative flex-1 p-4">
-                <!-- Tab 1: Objective -->
+              <div id="mainPanelIdentity" class="shrink-0 border-b border-[#30363d] bg-black/25 px-4 py-4 text-sm leading-relaxed text-[#c9d1d9]">
+                <p class="m-0 font-semibold tracking-wide text-[#56d364]">Tên: LÊ VIẾT KHOA [ IT Network ]</p>
+                <p class="mt-3 m-0">Ngày sinh: 21/02/2004 | SĐT: 0393919009 | Email: lvksaw@gmail.com</p>
+                <p class="mt-3 m-0">Địa chỉ: Hoàng Mai - Hà Nội | GitHub: <a class="text-[#58a6ff] underline decoration-[#58a6ff]/40 underline-offset-2 hover:text-[#79b8ff]" href="https://github.com/LVKhoaGH">https://github.com/LVKhoaGH</a></p>
+              </div>
+
+              <div class="relative min-h-0 flex-1 overflow-y-auto p-4">
+                <!-- Tab 1: MỤC TIÊU NGHỀ NGHIỆP -->
                 <section id="tab-objective" class="dash-panel viewFade hidden space-y-4">
-                  <div class="rounded-lg border border-[#30363d] bg-black/20">
-                    <div class="border-b border-[#30363d] px-4 py-2.5 text-xs text-[#8b949e]">objective / summary</div>
-                    <div class="grid gap-4 p-4 md:grid-cols-2">
-                      <div>
-                        <h2 class="text-sm font-semibold text-[#56d364]">Mục tiêu ngắn hạn</h2>
-                        <p class="mt-2 text-sm leading-relaxed text-[#c9d1d9]">CCNA thực tế</p>
-                      </div>
-                      <div>
-                        <h2 class="text-sm font-semibold text-[#56d364]">Mục tiêu trung hạn</h2>
-                        <p class="mt-2 text-sm leading-relaxed text-[#c9d1d9]">CCNP Encor, Security, Network Engineer</p>
-                      </div>
+                  <div class="rounded-lg border border-[#30363d] bg-black/20 p-4 md:p-5">
+                    <h2 class="m-0 border-b border-[#30363d] pb-3 text-sm font-semibold uppercase tracking-wide text-[#56d364]">MỤC TIÊU NGHỀ NGHIỆP</h2>
+                    <div class="mt-4 space-y-5 text-sm leading-relaxed text-[#c9d1d9]">
+                      <p class="m-0"><span class="font-semibold text-[#c9d1d9]">Mục Tiêu Ngắn Hạn:</span> Hướng tới áp dụng thành thục kiến thức CCNA trong thực tế, nâng cao khả năng thiết kế - triển khai hệ thống mạng doanh nghiệp.</p>
+                      <p class="m-0"><span class="font-semibold text-[#c9d1d9]">Mục Tiêu Trung Hạn:</span> Nâng cao năng lực chuyên môn để xử lý các sự cố mạng phức tạp, hướng tới vị trí Network Engineer. Chinh phục chứng chỉ CCNP Encor và triển khai hiệu quả các giải pháp định tuyến, bảo mật đa lớp nhằm đảm bảo hệ thống CNTT của doanh nghiệp luôn vận hành an toàn, xuyên suốt.</p>
                     </div>
                   </div>
                 </section>
 
-                <!-- Tab 2: Technical Skills (3 pillars) -->
+                <!-- Tab 2: KỸ NĂNG CHUYÊN MÔN -->
                 <section id="tab-skills" class="dash-panel viewFade hidden">
-                  <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
-                    <div class="rounded-lg border border-[#30363d] bg-black/20 p-4">
-                      <h3 class="border-b border-[#30363d] pb-2 text-sm font-semibold text-[#56d364]">Core Network</h3>
-                      <ul class="mt-3 list-none space-y-1.5 text-sm text-[#c9d1d9]">
-                        <li><span class="text-[#8b949e]">•</span> VLAN</li>
-                        <li><span class="text-[#8b949e]">•</span> Trunking</li>
-                        <li><span class="text-[#8b949e]">•</span> Inter-VLAN Routing</li>
-                        <li><span class="text-[#8b949e]">•</span> EtherChannel</li>
-                        <li><span class="text-[#8b949e]">•</span> FHRP</li>
-                        <li><span class="text-[#8b949e]">•</span> OSPF</li>
-                        <li><span class="text-[#8b949e]">•</span> Static Route</li>
-                        <li><span class="text-[#8b949e]">•</span> Subnetting</li>
-                      </ul>
+                  <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                    <div class="rounded-lg border border-[#30363d] bg-black/20 p-4 md:p-5">
+                      <h3 class="m-0 border-b border-[#30363d] pb-3 text-sm font-semibold text-[#56d364]">Core Network:</h3>
+                      <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="inline-flex rounded border border-[#30363d] bg-black/40 px-2.5 py-1 text-xs font-medium text-[#56d364]">VLAN</span>
+                        <span class="inline-flex rounded border border-[#30363d] bg-black/40 px-2.5 py-1 text-xs font-medium text-[#56d364]">Trunking</span>
+                        <span class="inline-flex rounded border border-[#30363d] bg-black/40 px-2.5 py-1 text-xs font-medium text-[#56d364]">Inter-VLAN Routing</span>
+                        <span class="inline-flex rounded border border-[#30363d] bg-black/40 px-2.5 py-1 text-xs font-medium text-[#56d364]">EtherChannel</span>
+                        <span class="inline-flex rounded border border-[#30363d] bg-black/40 px-2.5 py-1 text-xs font-medium text-[#56d364]">FHRP</span>
+                        <span class="inline-flex rounded border border-[#30363d] bg-black/40 px-2.5 py-1 text-xs font-medium text-[#56d364]">OSPF</span>
+                        <span class="inline-flex rounded border border-[#30363d] bg-black/40 px-2.5 py-1 text-xs font-medium text-[#56d364]">Static Route</span>
+                        <span class="inline-flex rounded border border-[#30363d] bg-black/40 px-2.5 py-1 text-xs font-medium text-[#56d364]">Subnetting</span>
+                      </div>
                     </div>
-                    <div class="rounded-lg border border-[#30363d] bg-black/20 p-4">
-                      <h3 class="border-b border-[#30363d] pb-2 text-sm font-semibold text-[#56d364]">Network Security</h3>
-                      <ul class="mt-3 list-none space-y-1.5 text-sm text-[#c9d1d9]">
-                        <li><span class="text-[#8b949e]">•</span> NAT</li>
-                        <li><span class="text-[#8b949e]">•</span> Policy</li>
-                        <li><span class="text-[#8b949e]">•</span> ACL</li>
-                        <li><span class="text-[#8b949e]">•</span> VPN</li>
-                        <li><span class="text-[#8b949e]">•</span> DoS Protection</li>
-                        <li><span class="text-[#8b949e]">•</span> Web Filter</li>
-                        <li><span class="text-[#8b949e]">•</span> Antivirus</li>
-                      </ul>
+                    <div class="rounded-lg border border-[#30363d] bg-black/20 p-4 md:p-5">
+                      <h3 class="m-0 border-b border-[#30363d] pb-3 text-sm font-semibold text-[#56d364]">Network Security:</h3>
+                      <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="inline-flex rounded border border-[#30363d] bg-black/40 px-2.5 py-1 text-xs font-medium text-[#56d364]">NAT</span>
+                        <span class="inline-flex rounded border border-[#30363d] bg-black/40 px-2.5 py-1 text-xs font-medium text-[#56d364]">Policy</span>
+                        <span class="inline-flex rounded border border-[#30363d] bg-black/40 px-2.5 py-1 text-xs font-medium text-[#56d364]">ACL</span>
+                        <span class="inline-flex rounded border border-[#30363d] bg-black/40 px-2.5 py-1 text-xs font-medium text-[#56d364]">VPN</span>
+                        <span class="inline-flex rounded border border-[#30363d] bg-black/40 px-2.5 py-1 text-xs font-medium text-[#56d364]">DoS Protection</span>
+                        <span class="inline-flex rounded border border-[#30363d] bg-black/40 px-2.5 py-1 text-xs font-medium text-[#56d364]">Web Filter</span>
+                        <span class="inline-flex rounded border border-[#30363d] bg-black/40 px-2.5 py-1 text-xs font-medium text-[#56d364]">Antivirus</span>
+                      </div>
                     </div>
-                    <div class="rounded-lg border border-[#30363d] bg-black/20 p-4">
-                      <h3 class="border-b border-[#30363d] pb-2 text-sm font-semibold text-[#56d364]">System Basic &amp; Mon</h3>
-                      <ul class="mt-3 list-none space-y-1.5 text-sm text-[#c9d1d9]">
-                        <li><span class="text-[#8b949e]">•</span> Linux Rocky 9</li>
-                        <li><span class="text-[#8b949e]">•</span> Windows Server</li>
-                        <li><span class="text-[#8b949e]">•</span> GCP (VM, VPC, Peering)</li>
-                        <li><span class="text-[#8b949e]">•</span> PRTG (SNMP)</li>
-                      </ul>
+                    <div class="rounded-lg border border-[#30363d] bg-black/20 p-4 md:p-5">
+                      <h3 class="m-0 border-b border-[#30363d] pb-3 text-sm font-semibold text-[#56d364]">System Basic &amp; Monitoring:</h3>
+                      <p class="mt-4 m-0 text-sm leading-relaxed text-[#c9d1d9]">Cài đặt và cấu hình dịch vụ mạng trên Linux Rocky 9. Triển khai VM, VPC, Peering trên Google Cloud Platform. Giám sát router và băng thông qua PRTG với SNMP và sensor.</p>
                     </div>
                   </div>
                 </section>
 
-                <!-- Tab 3: Projects Log -->
-                <section id="tab-projects" class="dash-panel viewFade hidden space-y-3">
-                  <article class="rounded-lg border border-[#30363d] bg-black/20 p-4">
-                    <h3 class="text-sm font-semibold text-[#56d364]">Network Config</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-[#c9d1d9]">Mô phỏng mạng CCNA, VLAN, OSPF, HSRP.</p>
+                <!-- Tab 3: DỰ ÁN CÁ NHÂN -->
+                <section id="tab-projects" class="dash-panel viewFade hidden space-y-4">
+                  <article class="rounded-lg border border-[#30363d] bg-black/20 p-4 md:p-5">
+                    <h3 class="m-0 text-sm font-semibold text-[#56d364]">1. Network Configuration</h3>
+                    <div class="mt-4 space-y-3 text-sm leading-relaxed text-[#c9d1d9]">
+                      <p class="m-0"><span class="font-semibold text-[#c9d1d9]">Mục tiêu:</span> Mô phỏng mạng doanh nghiệp nhiều tầng theo chuẩn CCNA.</p>
+                      <p class="m-0"><span class="font-semibold text-[#c9d1d9]">Kết quả:</span> Mô phỏng hoàn chỉnh mạng doanh nghiệp, đảm bảo connectivity giữa tất cả subnet, vận hành ổn định, bảo mật và quản lý lưu lượng hiệu quả.</p>
+                      <p class="m-0"><span class="font-semibold text-[#c9d1d9]">Kỹ thuật:</span> VLAN, Trunk, EtherChannel, HSRP, OSPF, NAT, ACL, Port Security.</p>
+                      <p class="m-0"><span class="font-semibold text-[#c9d1d9]">Môi trường:</span> Cisco Packet Tracer.</p>
+                    </div>
                   </article>
-                  <article class="rounded-lg border border-[#30363d] bg-black/20 p-4">
-                    <h3 class="text-sm font-semibold text-[#56d364]">Firewall Fortigate</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-[#c9d1d9]">NAT, Web Filter, EICAR, Traffic Shaping.</p>
+                  <article class="rounded-lg border border-[#30363d] bg-black/20 p-4 md:p-5">
+                    <h3 class="m-0 text-sm font-semibold text-[#56d364]">2. Firewall Fortigate</h3>
+                    <div class="mt-4 space-y-3 text-sm leading-relaxed text-[#c9d1d9]">
+                      <p class="m-0"><span class="font-semibold text-[#c9d1d9]">Mục tiêu:</span> Thực hành bảo mật mạng và quản lý truy cập Internet.</p>
+                      <p class="m-0"><span class="font-semibold text-[#c9d1d9]">Kết quả:</span> Cấu hình truy cập Internet, chặn website độc hại, ngăn tải file virus (EICAR), giới hạn băng thông.</p>
+                      <p class="m-0"><span class="font-semibold text-[#c9d1d9]">Kỹ thuật:</span> NAT, Policy, DoS Protection, Web Filter, Antivirus, Traffic Shaping.</p>
+                      <p class="m-0"><span class="font-semibold text-[#c9d1d9]">Môi trường:</span> VMware, EVE-NG, FortiGate, Windows 10.</p>
+                    </div>
                   </article>
-                  <article class="rounded-lg border border-[#30363d] bg-black/20 p-4">
-                    <h3 class="text-sm font-semibold text-[#56d364]">Windows Server 2016</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-[#c9d1d9]">ADDS, DNS, DHCP, File Server.</p>
+                  <article class="rounded-lg border border-[#30363d] bg-black/20 p-4 md:p-5">
+                    <h3 class="m-0 text-sm font-semibold text-[#56d364]">3. Windows Server 2016</h3>
+                    <div class="mt-4 space-y-3 text-sm leading-relaxed text-[#c9d1d9]">
+                      <p class="m-0"><span class="font-semibold text-[#c9d1d9]">Mục tiêu:</span> Xây dựng hạ tầng domain cơ bản.</p>
+                      <p class="m-0"><span class="font-semibold text-[#c9d1d9]">Kết quả:</span> Hoàn thiện hệ thống domain, quản lý user/group, cấp phát IP động &amp; chia sẻ tài nguyên. Soạn thảo hướng dẫn kỹ thuật và truyền đạt kiến thức FortiGate trong môi trường doanh nghiệp. Tài liệu tham khảo giúp người đọc hiểu các thao tác cơ bản, chuẩn bị cho việc triển khai thực tế.</p>
+                      <p class="m-0"><span class="font-semibold text-[#c9d1d9]">Kỹ thuật:</span> ADDS, DNS, DHCP, File Server, Remote Desktop.</p>
+                      <p class="m-0"><span class="font-semibold text-[#c9d1d9]">Môi trường:</span> VMware, Windows Server 2016, Windows 10.</p>
+                    </div>
                   </article>
                 </section>
 
-                <!-- Tab 4: Exp & Education -->
-                <section id="tab-expedu" class="dash-panel viewFade hidden space-y-3">
-                  <div class="rounded-lg border border-[#30363d] bg-black/20 p-4">
-                    <h3 class="text-sm font-semibold text-[#56d364]">Experience</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-[#c9d1d9]">Thực tập sinh VNPT Technology (Kiểm định &amp; Troubleshoot thiết bị mạng).</p>
-                  </div>
-                  <div class="rounded-lg border border-[#30363d] bg-black/20 p-4">
-                    <h3 class="text-sm font-semibold text-[#56d364]">Education</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-[#c9d1d9]">Đại học UNETI (2022-2026).</p>
-                  </div>
-                  <div class="rounded-lg border border-[#30363d] bg-black/20 p-4">
-                    <h3 class="text-sm font-semibold text-[#56d364]">Certifications</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-[#c9d1d9]">CCNA (Học viện BKACAD), Fortinet FCA.</p>
+                <!-- Tab 4: KINH NGHIỆM LÀM VIỆC & HỌC VẤN -->
+                <section id="tab-expedu" class="dash-panel viewFade hidden">
+                  <div class="rounded-lg border border-[#30363d] bg-black/20 p-4 md:p-5">
+                    <div class="space-y-4 text-sm leading-relaxed text-[#c9d1d9]">
+                      <p class="m-0 font-semibold text-[#56d364]">Kinh nghiệm làm việc:</p>
+                      <p class="m-0">VNPT TECHNOLOGY (12/2025 - 02/2026): Thực tập sinh Kỹ thuật Sản xuất &amp; Kiểm định.</p>
+                      <p class="m-0"><span class="font-semibold text-[#c9d1d9]">Nhiệm vụ chính:</span> Tham gia trực tiếp vào quy trình lắp ráp, nạp firmware và kiểm soát chất lượng cho các dòng thiết bị mạng (Modem, ONT).</p>
+                      <p class="m-0"><span class="font-semibold text-[#c9d1d9]">Kiểm định &amp; Troubleshoot:</span> Chẩn đoán lỗi vật lý, kiểm tra tính toàn vẹn của tín hiệu LAN/WAN và đảm bảo độ ổn định của bo mạch trước khi xuất xưởng.</p>
+                      <p class="m-0"><span class="font-semibold text-[#c9d1d9]">Kỹ năng đúc kết:</span> Rèn luyện tính kỷ luật, sự cẩn thận tỉ mỉ với thiết bị phần cứng và khả năng chịu áp lực cao trong môi trường sản xuất quy mô lớn.</p>
+                      <p class="m-0 pt-2 font-semibold text-[#56d364]">Học vấn &amp; Chứng chỉ:</p>
+                      <p class="m-0">Đại học Kinh tế Kỹ thuật Công nghiệp (09/2022 - Hiện Tại): Mạng Máy Tính Và Truyền Thông Dữ Liệu.</p>
+                      <p class="m-0">Học viện Công nghệ BKACAD (10/2024 - 02/2025): Hoàn thành khóa CCNA.</p>
+                      <p class="m-0">Cisco Certified Network Associate (04/2026 - 04/2029): (<a class="text-[#58a6ff] underline decoration-[#58a6ff]/40 underline-offset-2 hover:text-[#79b8ff]" href="https://bit.ly/xacthuc_CCNA_credly">https://bit.ly/xacthuc_CCNA_credly</a>).</p>
+                      <p class="m-0">Fortinet Certified Associate Cybersecurity (09/2025 - 10/2025): (<a class="text-[#58a6ff] underline decoration-[#58a6ff]/40 underline-offset-2 hover:text-[#79b8ff]" href="https://bit.ly/xacthuc_fca_credly">https://bit.ly/xacthuc_fca_credly</a>).</p>
+                    </div>
                   </div>
                 </section>
               </div>
