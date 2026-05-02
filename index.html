@@ -131,7 +131,7 @@
 <body class="min-h-full bg-[#f9fafb] text-gray-800 dark:bg-black dark:text-gray-300 font-sans antialiased">
 
     <!-- Boot/Typing Overlay -->
-    <div id="boot" class="fixed inset-0 z-50 bg-black font-mono text-gray-800 dark:text-gray-300 scanlines noise">
+    <div id="boot" class="absolute inset-0 z-50 bg-[#f9fafb] dark:bg-black p-4 md:p-8 font-mono text-gray-800 dark:text-gray-300 overflow-y-auto">
       <div class="mx-auto flex h-full max-w-5xl items-center px-5 py-10">
         <div class="w-full rounded-xl border border-gray-300 dark:border-gray-800 bg-white dark:bg-[#0a0a0a]/50 shadow-[0_0_0_1px_rgba(51,65,85,.85),_0_30px_90px_rgba(15,23,42,.75)] backdrop-blur">
           <div class="px-4 py-4">
@@ -322,8 +322,12 @@
         const portfolio = document.getElementById("portfolio");
         const tabCmd = document.getElementById("tabCmd");
 
-        const COLOR_BASE = "#e5e7eb";
-        const COLOR_CMD = "#f8fafc";
+        function getColorBase() {
+          return document.documentElement.classList.contains("dark") ? "#e5e7eb" : "#1f2937";
+        }
+        function getColorCmd() {
+          return document.documentElement.classList.contains("dark") ? "#f8fafc" : "#000000";
+        }
         const COLOR_LINK = "#f8fafc";
 
         let dashboardReady = false;
@@ -471,7 +475,7 @@
         // Scenario runner (dump/type/pause) using async/await.
         // - dump: prints text instantly, then waits delayMs (optional newline control)
         // - type: types text char-by-char, then waits delayMs (optional newline control)
-        async function runScenario(steps) {
+        async function runScenario(steps, COLOR_BASE, COLOR_CMD) {
           for (const step of steps) {
             if (step.kind === "pause") {
               await sleep(step.delayMs ?? 0);
@@ -500,6 +504,9 @@
         async function runBootSequence() {
           if (!bootTextEl) return;
           bootTextEl.textContent = "";
+
+          const COLOR_BASE = getColorBase();
+          const COLOR_CMD = getColorCmd();
 
           const steps = [
             // Boot log (more realistic)
@@ -545,7 +552,7 @@
             { kind: "dump", text: "[OK]", delayMs: 300, color: COLOR_BASE },
           ];
 
-          await runScenario(steps);
+          await runScenario(steps, COLOR_BASE, COLOR_CMD);
           await fadeOutBootThenReveal();
         }
 
