@@ -1,1043 +1,1368 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lê Việt Khoa | Network Engineer Portfolio</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ["IBM Plex Sans", "system-ui", "sans-serif"],
-              mono: ["IBM Plex Mono", "monospace"],
-            }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lê Việt Khoa | Network Engineer Portfolio</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["IBM Plex Sans", "system-ui", "sans-serif"],
+            mono: ["IBM Plex Mono", "monospace"],
           }
         }
       }
-    </script>
+    }
+  </script>
 
-    <style>
-      /* ============================================================
+  <style>
+    /* ============================================================
          PRINT STYLES – Ctrl+P renders a clean A4 CV
          ============================================================ */
-      @media print {
-        /* Hide interactive chrome */
-        #boot, #topBar, header, footer,
-        #dashMenu, #tabCmd, #mainPanelIdentity .print-hide,
-        .caret, .scanlines, .noise,
-        button, [role="button"] { display: none !important; }
+    @media print {
 
-        /* Force white background + black text */
-        html, body, * {
-          background: #fff !important;
-          color: #000 !important;
-          box-shadow: none !important;
-          border-color: #ccc !important;
-        }
-
-        /* Show all panels at once for print */
-        .dash-panel { display: block !important; opacity: 1 !important; transform: none !important; }
-        .dash-panel + .dash-panel { margin-top: 2rem; }
-
-        /* Remove sticky/fixed positioning */
-        .sticky, .fixed { position: static !important; }
-
-        /* Remove overflow clipping so full content prints */
-        .overflow-y-auto, .overflow-hidden { overflow: visible !important; }
-        .min-h-\[min\(100vh\,920px\)\] { min-height: 0 !important; }
-
-        /* Page breaks */
-        article { page-break-inside: avoid; }
-
-        /* Print name header at top */
-        #printHeader { display: block !important; }
+      /* Hide interactive chrome */
+      #boot,
+      #topBar,
+      header,
+      footer,
+      #dashMenu,
+      #tabCmd,
+      #mainPanelIdentity .print-hide,
+      .caret,
+      .scanlines,
+      .noise,
+      button,
+      [role="button"] {
+        display: none !important;
       }
 
-      /* Hidden on screen, shown on print */
-      #printHeader { display: none; }
+      /* Force white background + black text */
+      html,
+      body,
+      * {
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        border-color: #ccc !important;
+      }
 
-      /* ============================================================
+      /* Show all panels at once for print */
+      .dash-panel {
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .dash-panel+.dash-panel {
+        margin-top: 2rem;
+      }
+
+      /* Remove sticky/fixed positioning */
+      .sticky,
+      .fixed {
+        position: static !important;
+      }
+
+      /* Remove overflow clipping so full content prints */
+      .overflow-y-auto,
+      .overflow-hidden {
+        overflow: visible !important;
+      }
+
+      .min-h-\[min\(100vh\,920px\)\] {
+        min-height: 0 !important;
+      }
+
+      /* Page breaks */
+      article {
+        page-break-inside: avoid;
+      }
+
+      /* Print name header at top */
+      #printHeader {
+        display: block !important;
+      }
+    }
+
+    /* Hidden on screen, shown on print */
+    #printHeader {
+      display: none;
+    }
+
+    /* ============================================================
          VISUAL EFFECTS
          ============================================================ */
-      html, body { height: 100%; }
-      body { background: none; color: inherit; }
-      a { color: inherit; }
+    html,
+    body {
+      height: 100%;
+    }
 
-      .scanlines:before {
-        content: "";
-        position: fixed; inset: 0;
-        pointer-events: none;
-        background: repeating-linear-gradient(
-          to bottom,
-          rgba(0,0,0,0.025) 0px, rgba(0,0,0,0.025) 1px,
-          transparent 2px, transparent 6px
-        );
-        opacity: .18; z-index: 40;
-      }
-      .dark .scanlines:before {
-        background: repeating-linear-gradient(
-          to bottom,
-          rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px,
-          transparent 2px, transparent 6px
-        );
-      }
-      .noise:after {
-        content: "";
-        position: fixed; inset: 0;
-        pointer-events: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
-        background-size: 220px 220px; opacity: .05; z-index: 41;
+    body {
+      background: none;
+      color: inherit;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .scanlines:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(to bottom,
+          rgba(0, 0, 0, 0.025) 0px, rgba(0, 0, 0, 0.025) 1px,
+          transparent 2px, transparent 6px);
+      opacity: .18;
+      z-index: 40;
+    }
+
+    .dark .scanlines:before {
+      background: repeating-linear-gradient(to bottom,
+          rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 1px,
+          transparent 2px, transparent 6px);
+    }
+
+    .noise:after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+      opacity: .05;
+      z-index: 41;
+    }
+
+    @keyframes caretBlink {
+
+      0%,
+      49% {
+        opacity: 1
       }
 
-      @keyframes caretBlink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
-      .caret {
-        display: inline-block; width: .55ch; height: 1em;
-        translate: 0 .12em; border-radius: 2px;
-        animation: caretBlink 1s step-end infinite;
+      50%,
+      100% {
+        opacity: 0
       }
-      /* Light: dark caret; Dark: white caret */
-      .caret { background: #111827; box-shadow: 0 0 8px rgba(17,24,39,.2); }
-      .dark .caret { background: #fff; box-shadow: 0 0 10px rgba(255,255,255,.18); }
+    }
 
-      .h1-terminal::after {
-        content: ""; display: inline-block;
-        width: .55ch; height: 1em; margin-left: .35ch;
-        translate: 0 .12em; border-radius: 2px;
-        animation: caretBlink 1s step-end infinite;
-        background: #111827;
-      }
-      .dark .h1-terminal::after { background: #fff; }
+    .caret {
+      display: inline-block;
+      width: .55ch;
+      height: 1em;
+      translate: 0 .12em;
+      border-radius: 2px;
+      animation: caretBlink 1s step-end infinite;
+    }
 
-      /* ============================================================
+    /* Light: dark caret; Dark: white caret */
+    .caret {
+      background: #111827;
+      box-shadow: 0 0 8px rgba(17, 24, 39, .2);
+    }
+
+    .dark .caret {
+      background: #fff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, .18);
+    }
+
+    .h1-terminal::after {
+      content: "";
+      display: inline-block;
+      width: .55ch;
+      height: 1em;
+      margin-left: .35ch;
+      translate: 0 .12em;
+      border-radius: 2px;
+      animation: caretBlink 1s step-end infinite;
+      background: #111827;
+    }
+
+    .dark .h1-terminal::after {
+      background: #fff;
+    }
+
+    /* ============================================================
          REVEAL ANIMATIONS
          ============================================================ */
-      .reveal { opacity: 0; transform: translateY(6px); transition: opacity 700ms ease, transform 700ms ease; }
-      .reveal.on { opacity: 1; transform: translateY(0); }
-      .viewFade { opacity: 0; transform: translateY(6px); transition: opacity 350ms ease, transform 350ms ease; }
-      .viewFade.on { opacity: 1; transform: translateY(0); }
+    .reveal {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
 
-      @media (prefers-reduced-motion: reduce) {
-        .reveal, .viewFade { transition: none; transform: none; opacity: 1; }
-        .caret, .h1-terminal::after { animation: none; }
+    .reveal.on {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .viewFade {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 350ms ease, transform 350ms ease;
+    }
+
+    .viewFade.on {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .reveal,
+      .viewFade {
+        transition: none;
+        transform: none;
+        opacity: 1;
       }
 
-      /* ============================================================
+      .caret,
+      .h1-terminal::after {
+        animation: none;
+      }
+    }
+
+    /* ============================================================
          DASHBOARD NAV – FortiGate WebUI style active state
          ============================================================ */
-      .dash-tab { border-left: 3px solid transparent; border-bottom: 3px solid transparent; }
+    .dash-tab {
+      border-left: 3px solid transparent;
+      border-bottom: 3px solid transparent;
+    }
+
+    .dash-tab.dash-tab-active {
+      border-left-color: #111827;
+      background: rgba(0, 0, 0, .06);
+      color: #111827;
+      font-weight: 700;
+    }
+
+    .dark .dash-tab.dash-tab-active {
+      border-left-color: #ffffff;
+      background: rgba(255, 255, 255, .08);
+      color: #ffffff;
+    }
+
+    @media (max-width: 1023px) {
       .dash-tab.dash-tab-active {
-        border-left-color: #111827;
-        background: rgba(0,0,0,.06);
-        color: #111827; font-weight: 700;
-      }
-      .dark .dash-tab.dash-tab-active {
-        border-left-color: #ffffff;
-        background: rgba(255,255,255,.08);
-        color: #ffffff;
-      }
-      @media (max-width: 1023px) {
-        .dash-tab.dash-tab-active {
-          border-left-color: transparent;
-          border-bottom-color: #111827;
-        }
-        .dark .dash-tab.dash-tab-active {
-          border-left-color: transparent;
-          border-bottom-color: #ffffff;
-        }
+        border-left-color: transparent;
+        border-bottom-color: #111827;
       }
 
-      /* ============================================================
+      .dark .dash-tab.dash-tab-active {
+        border-left-color: transparent;
+        border-bottom-color: #ffffff;
+      }
+    }
+
+    /* ============================================================
          TOP BAR BUTTON GROUP
          ============================================================ */
-      .topbar-btn {
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 0.75rem;
-        padding: 0.375rem 0.75rem;
-        border-radius: 0.375rem;
-        border: 1px solid #d1d5db;
-        background: #fff;
-        color: #111827;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 150ms, color 150ms;
-      }
-      .topbar-btn:hover { background: #f3f4f6; }
-      .dark .topbar-btn {
-        border-color: #374151;
-        background: #111111;
-        color: #e5e7eb;
-      }
-      .dark .topbar-btn:hover { background: #1a1a1a; }
+    .topbar-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      padding: 0.375rem 0.75rem;
+      border-radius: 0.375rem;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #111827;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 150ms, color 150ms;
+    }
 
-      /* ============================================================
+    .topbar-btn:hover {
+      background: #f3f4f6;
+    }
+
+    .dark .topbar-btn {
+      border-color: #374151;
+      background: #111111;
+      color: #e5e7eb;
+    }
+
+    .dark .topbar-btn:hover {
+      background: #1a1a1a;
+    }
+
+    /* ============================================================
          SKILL BADGE HOVER
          ============================================================ */
-      .skill-badge {
-        transition: background 150ms, color 150ms, border-color 150ms;
-        cursor: default;
-      }
-      .skill-badge:hover {
-        background: #111827;
-        color: #fff;
-        border-color: #111827;
-      }
-      .dark .skill-badge:hover {
-        background: #f9fafb;
-        color: #111827;
-        border-color: #f9fafb;
-      }
-    </style>
+    .skill-badge {
+      transition: background 150ms, color 150ms, border-color 150ms;
+      cursor: default;
+    }
+
+    .skill-badge:hover {
+      background: #111827;
+      color: #fff;
+      border-color: #111827;
+    }
+
+    .dark .skill-badge:hover {
+      background: #f9fafb;
+      color: #111827;
+      border-color: #f9fafb;
+    }
+  </style>
 </head>
+
 <body class="min-h-full bg-[#f4f5f7] text-gray-800 dark:bg-[#0b0b0d] dark:text-gray-300 font-sans antialiased">
 
-<!-- ================================================================
+  <!-- ================================================================
      PRINT HEADER – hidden on screen, visible on print
      ================================================================ -->
-<div id="printHeader" class="mb-6">
-  <h1 class="text-2xl font-bold">LÊ VIỆT KHOA — Network Engineer</h1>
-  <p>DOB: 21/02/2004 | Tel: 0393919009 | Email: lvksaw@gmail.com | Hanoi, Vietnam | GitHub: LVKhoaGH</p>
-  <p>Cisco CCNA (04/2026–04/2029) | Fortinet Certified Associate Cybersecurity (09/2025)</p>
-  <hr>
-</div>
+  <div id="printHeader" class="mb-6">
+    <h1 class="text-2xl font-bold">LÊ VIỆT KHOA — Network Engineer</h1>
+    <p>DOB: 21/02/2004 | Tel: 0393919009 | Email: lvksaw@gmail.com | Hanoi, Vietnam | GitHub: LVKhoaGH</p>
+    <p>Cisco CCNA (04/2026–04/2029) | Fortinet Certified Associate Cybersecurity (09/2025)</p>
+    <hr>
+  </div>
 
-<!-- ================================================================
+  <!-- ================================================================
      BOOT / TYPING OVERLAY
      ================================================================ -->
-<div id="boot" class="fixed inset-0 z-50 bg-[#f4f5f7] dark:bg-[#0b0b0d] p-4 md:p-8 font-mono overflow-y-auto">
-  <div class="mx-auto flex h-full max-w-5xl items-center px-5 py-10">
-    <div class="w-full rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0d0d10]/80 shadow-xl backdrop-blur">
-      <div class="px-4 py-4">
-        <pre id="bootPre" class="max-h-[72vh] overflow-auto leading-relaxed whitespace-pre-wrap text-sm"><span id="bootText"></span><span class="caret" aria-hidden="true"></span></pre>
+  <div id="boot" class="fixed inset-0 z-50 bg-[#f4f5f7] dark:bg-[#0b0b0d] p-4 md:p-8 font-mono overflow-y-auto">
+    <div class="mx-auto flex h-full max-w-5xl items-center px-5 py-10">
+      <div
+        class="w-full rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0d0d10]/80 shadow-xl backdrop-blur">
+        <div class="px-4 py-4">
+          <pre id="bootPre"
+            class="max-h-[72vh] overflow-auto leading-relaxed whitespace-pre-wrap text-sm"><span id="bootText"></span><span class="caret" aria-hidden="true"></span></pre>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ================================================================
+  <!-- ================================================================
      MAIN UI
      ================================================================ -->
-<div class="min-h-screen bg-[#f4f5f7] dark:bg-[#0b0b0d] text-gray-800 dark:text-gray-300 scanlines noise">
+  <div class="min-h-screen bg-[#f4f5f7] dark:bg-[#0b0b0d] text-gray-800 dark:text-gray-300 scanlines noise">
 
-  <!-- TOP BAR: Lang + Theme toggles -->
-  <div id="topBar" class="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur dark:border-gray-800 dark:bg-[#0d0d10]/90">
-    <div class="mx-auto max-w-6xl px-5 py-2.5 flex items-center justify-between">
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-500 tracking-widest">LVK_PORTFOLIO v2.0</span>
-      <div class="flex gap-2">
-        <button id="langToggleBtn" onclick="toggleLang()" class="topbar-btn">[ Lang: VI ]</button>
-        <button id="themeToggleBtn" onclick="toggleTheme()" class="topbar-btn">[ Mode: Light ]</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Ambient glow -->
-  <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10">
-    <div class="absolute -top-40 left-1/2 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-blue-500/5 dark:bg-white/5 blur-3xl"></div>
-  </div>
-
-  <!-- HEADER -->
-  <header class="border-b border-gray-200 bg-white/90 backdrop-blur dark:border-gray-800 dark:bg-[#0d0d10]/90">
-    <div class="mx-auto max-w-6xl px-5 py-4">
-      <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <div class="flex items-center gap-3">
-          <div class="h-11 w-11 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] shadow grid place-items-center shrink-0">
-            <span class="font-mono text-sm font-bold text-gray-800 dark:text-gray-200">LVK</span>
-          </div>
-          <div>
-            <h1 class="font-bold tracking-wide text-gray-900 dark:text-gray-100 h1-terminal" data-vi="Lê Việt Khoa" data-en="Le Viet Khoa">Lê Việt Khoa</h1>
-            <p class="text-sm text-gray-500 dark:text-gray-400" data-vi="Network Engineer" data-en="Network Engineer">Network Engineer</p>
-          </div>
-        </div>
-
-        <div class="flex flex-wrap items-center gap-2 text-xs">
-          <a class="topbar-btn" href="mailto:lvksaw@gmail.com">✉ lvksaw@gmail.com</a>
-          <a class="topbar-btn" href="https://github.com/LVKhoaGH" target="_blank" rel="noopener">⌘ LVKhoaGH</a>
-          <a class="topbar-btn" href="tel:0393919009">✆ 0393919009</a>
+    <!-- TOP BAR: Lang + Theme toggles -->
+    <div id="topBar"
+      class="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur dark:border-gray-800 dark:bg-[#0d0d10]/90">
+      <div class="mx-auto max-w-6xl px-5 py-2.5 flex items-center justify-between">
+        <span class="font-mono text-xs text-gray-500 dark:text-gray-500 tracking-widest">LVK_PORTFOLIO v2.0</span>
+        <div class="flex gap-2">
+          <button id="langToggleBtn" onclick="toggleLang()" class="topbar-btn">[ Lang: VI ]</button>
+          <button id="themeToggleBtn" onclick="toggleTheme()" class="topbar-btn">[ Mode: Light ]</button>
         </div>
       </div>
     </div>
-  </header>
 
-  <!-- MAIN -->
-  <main id="main" class="mx-auto max-w-6xl px-5 py-8">
-    <div id="portfolio" class="reveal font-sans">
+    <!-- Ambient glow -->
+    <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10">
+      <div
+        class="absolute -top-40 left-1/2 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-blue-500/5 dark:bg-white/5 blur-3xl">
+      </div>
+    </div>
 
-      <!-- FortiGate WebUI layout: sidebar + content -->
-      <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:items-stretch">
-
-        <!-- SIDEBAR MENU -->
-        <aside class="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10] lg:col-span-1 shadow-sm">
-          <div class="border-b border-gray-200 dark:border-gray-800 px-4 py-3">
-            <div class="font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-500" data-vi="Menu" data-en="Menu">Menu</div>
-          </div>
-          <nav id="dashMenu" class="flex flex-row gap-1 overflow-x-auto p-2 text-sm lg:flex-col lg:gap-0 lg:overflow-visible lg:p-0">
-            <button type="button" data-tab="objective"
-              class="dash-tab dash-tab-active min-w-[10rem] shrink-0 rounded-md lg:rounded-none border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-transparent px-3 py-2.5 text-left font-mono text-xs transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 lg:min-w-0 lg:border-0 lg:border-b">
-              <span data-vi="[1] Mục Tiêu" data-en="[1] Objective">[1] Mục Tiêu</span>
-            </button>
-            <button type="button" data-tab="expedu"
-              class="dash-tab min-w-[10rem] shrink-0 rounded-md lg:rounded-none border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-transparent px-3 py-2.5 text-left font-mono text-xs transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 lg:min-w-0 lg:border-0 lg:border-b">
-              <span data-vi="[2] Kinh Nghiệm" data-en="[2] Exp &amp; Edu">[2] Kinh Nghiệm</span>
-            </button>
-            <button type="button" data-tab="projects"
-              class="dash-tab min-w-[10rem] shrink-0 rounded-md lg:rounded-none border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-transparent px-3 py-2.5 text-left font-mono text-xs transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 lg:min-w-0 lg:border-0 lg:border-b">
-              <span data-vi="[3] Dự Án" data-en="[3] Projects">[3] Dự Án</span>
-            </button>
-            <button type="button" data-tab="skills"
-              class="dash-tab min-w-[10rem] shrink-0 rounded-md lg:rounded-none border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-transparent px-3 py-2.5 text-left font-mono text-xs transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 lg:min-w-0 lg:border-0 lg:border-b">
-              <span data-vi="[4] Kỹ Năng" data-en="[4] Tech Skills">[4] Kỹ Năng</span>
-            </button>
-          </nav>
-        </aside>
-
-        <!-- MAIN PANEL -->
-        <section class="flex min-h-[min(100vh,940px)] flex-col rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10] lg:col-span-3 shadow-sm">
-
-          <!-- CLI command bar -->
-          <div class="shrink-0 border-b border-gray-200 dark:border-gray-800 bg-gray-50/80 dark:bg-[#0d0d10]/60 px-4 py-3">
-            <pre class="m-0 whitespace-pre-wrap font-mono text-sm leading-relaxed"><span class="text-gray-500 dark:text-gray-400">Router#</span> <span class="text-gray-900 dark:text-white font-bold" id="tabCmd"></span><span class="caret" aria-hidden="true"></span></pre>
+    <!-- HEADER -->
+    <header class="border-b border-gray-200 bg-white/90 backdrop-blur dark:border-gray-800 dark:bg-[#0d0d10]/90">
+      <div class="mx-auto max-w-6xl px-5 py-4">
+        <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div class="flex items-center gap-3">
+            <div
+              class="h-11 w-11 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] shadow grid place-items-center shrink-0">
+              <span class="font-mono text-sm font-bold text-gray-800 dark:text-gray-200">LVK</span>
+            </div>
+            <div>
+              <h1 class="font-bold tracking-wide text-gray-900 dark:text-gray-100 h1-terminal" data-vi="Lê Việt Khoa"
+                data-en="Le Viet Khoa">Lê Việt Khoa</h1>
+              <p class="text-sm text-gray-500 dark:text-gray-400" data-vi="Network Engineer" data-en="Network Engineer">
+                Network Engineer</p>
+            </div>
           </div>
 
-          <!-- Identity block -->
-          <div id="mainPanelIdentity" class="shrink-0 border-b border-gray-200 dark:border-gray-800 bg-gray-50/60 dark:bg-[#0d0d10]/40 px-4 py-4 leading-relaxed">
-            <p class="m-0 font-bold tracking-wide text-gray-900 dark:text-white">
-              <span data-vi="Tên: LÊ VIẾT KHOA [ IT Network ]" data-en="Name: LE VIET KHOA [ IT Network ]">Tên: LÊ VIẾT KHOA [ IT Network ]</span>
-            </p>
-            <p class="mt-2 m-0 text-sm text-gray-600 dark:text-gray-400">
-              <span data-vi="Ngày sinh: 21/02/2004" data-en="DOB: 21/02/2004">Ngày sinh: 21/02/2004</span>
-              &nbsp;|&nbsp; SĐT: 0393919009 &nbsp;|&nbsp; Email: lvksaw@gmail.com
-            </p>
-            <p class="mt-1 m-0 text-sm text-gray-600 dark:text-gray-400">
-              <span data-vi="Địa chỉ: Hoàng Mai – Hà Nội" data-en="Address: Hoang Mai – Hanoi, Vietnam">Địa chỉ: Hoàng Mai – Hà Nội</span>
-              &nbsp;|&nbsp; GitHub: <a class="underline underline-offset-2 hover:text-gray-900 dark:hover:text-white transition-colors" href="https://github.com/LVKhoaGH" target="_blank" rel="noopener">https://github.com/LVKhoaGH</a>
-            </p>
+          <div class="flex flex-wrap items-center gap-2 text-xs">
+            <a class="topbar-btn" href="mailto:lvksaw@gmail.com">✉ lvksaw@gmail.com</a>
+            <a class="topbar-btn" href="https://github.com/LVKhoaGH" target="_blank" rel="noopener">⌘ LVKhoaGH</a>
+            <a class="topbar-btn" href="tel:0393919009">✆ 0393919009</a>
           </div>
+        </div>
+      </div>
+    </header>
 
-          <!-- TAB PANELS -->
-          <div class="relative min-h-0 flex-1 overflow-y-auto p-4">
+    <!-- MAIN -->
+    <main id="main" class="mx-auto max-w-6xl px-5 py-8">
+      <div id="portfolio" class="reveal font-sans">
 
-            <!-- =====================================================
+        <!-- FortiGate WebUI layout: sidebar + content -->
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:items-stretch">
+
+          <!-- SIDEBAR MENU -->
+          <aside
+            class="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10] lg:col-span-1 shadow-sm">
+            <div class="border-b border-gray-200 dark:border-gray-800 px-4 py-3">
+              <div class="font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-500" data-vi="Menu"
+                data-en="Menu">Menu</div>
+            </div>
+            <nav id="dashMenu"
+              class="flex flex-row gap-1 overflow-x-auto p-2 text-sm lg:flex-col lg:gap-0 lg:overflow-visible lg:p-0">
+              <button type="button" data-tab="objective"
+                class="dash-tab dash-tab-active min-w-[10rem] shrink-0 rounded-md lg:rounded-none border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-transparent px-3 py-2.5 text-left font-mono text-xs transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 lg:min-w-0 lg:border-0 lg:border-b">
+                <span data-vi="[1] Mục Tiêu" data-en="[1] Objective">[1] Mục Tiêu</span>
+              </button>
+              <button type="button" data-tab="expedu"
+                class="dash-tab min-w-[10rem] shrink-0 rounded-md lg:rounded-none border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-transparent px-3 py-2.5 text-left font-mono text-xs transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 lg:min-w-0 lg:border-0 lg:border-b">
+                <span data-vi="[2] Kinh Nghiệm" data-en="[2] Exp &amp; Edu">[2] Kinh Nghiệm</span>
+              </button>
+              <button type="button" data-tab="projects"
+                class="dash-tab min-w-[10rem] shrink-0 rounded-md lg:rounded-none border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-transparent px-3 py-2.5 text-left font-mono text-xs transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 lg:min-w-0 lg:border-0 lg:border-b">
+                <span data-vi="[3] Dự Án" data-en="[3] Projects">[3] Dự Án</span>
+              </button>
+              <button type="button" data-tab="skills"
+                class="dash-tab min-w-[10rem] shrink-0 rounded-md lg:rounded-none border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-transparent px-3 py-2.5 text-left font-mono text-xs transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 lg:min-w-0 lg:border-0 lg:border-b">
+                <span data-vi="[4] Kỹ Năng" data-en="[4] Tech Skills">[4] Kỹ Năng</span>
+              </button>
+            </nav>
+          </aside>
+
+          <!-- MAIN PANEL -->
+          <section
+            class="flex min-h-[min(100vh,940px)] flex-col rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10] lg:col-span-3 shadow-sm">
+
+            <!-- CLI command bar -->
+            <div
+              class="shrink-0 border-b border-gray-200 dark:border-gray-800 bg-gray-50/80 dark:bg-[#0d0d10]/60 px-4 py-3">
+              <pre
+                class="m-0 whitespace-pre-wrap font-mono text-sm leading-relaxed"><span class="text-gray-500 dark:text-gray-400">Router#</span> <span class="text-gray-900 dark:text-white font-bold" id="tabCmd"></span><span class="caret" aria-hidden="true"></span></pre>
+            </div>
+
+            <!-- Identity block -->
+            <div id="mainPanelIdentity"
+              class="shrink-0 border-b border-gray-200 dark:border-gray-800 bg-gray-50/60 dark:bg-[#0d0d10]/40 px-4 py-4 leading-relaxed">
+              <p class="m-0 font-bold tracking-wide text-gray-900 dark:text-white">
+                <span data-vi="Tên: LÊ VIẾT KHOA [ IT Network ]" data-en="Name: LE VIET KHOA [ IT Network ]">Tên: LÊ
+                  VIẾT KHOA [ IT Network ]</span>
+              </p>
+              <p class="mt-2 m-0 text-sm text-gray-600 dark:text-gray-400">
+                <span data-vi="Ngày sinh: 21/02/2004" data-en="DOB: 21/02/2004">Ngày sinh: 21/02/2004</span>
+                &nbsp;|&nbsp; SĐT: 0393919009 &nbsp;|&nbsp; Email: lvksaw@gmail.com
+              </p>
+              <p class="mt-1 m-0 text-sm text-gray-600 dark:text-gray-400">
+                <span data-vi="Địa chỉ: Hoàng Mai – Hà Nội" data-en="Address: Hoang Mai – Hanoi, Vietnam">Địa chỉ: Hoàng
+                  Mai – Hà Nội</span>
+                &nbsp;|&nbsp; GitHub: <a
+                  class="underline underline-offset-2 hover:text-gray-900 dark:hover:text-white transition-colors"
+                  href="https://github.com/LVKhoaGH" target="_blank" rel="noopener">https://github.com/LVKhoaGH</a>
+              </p>
+            </div>
+
+            <!-- TAB PANELS -->
+            <div class="relative min-h-0 flex-1 overflow-y-auto p-4">
+
+              <!-- =====================================================
                  TAB 1: OBJECTIVE
                  ===================================================== -->
-            <section id="tab-objective" class="dash-panel viewFade hidden space-y-4">
-              <div class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
-                <h2 class="m-0 border-b border-gray-200 dark:border-gray-800 pb-3 font-bold uppercase tracking-widest text-sm text-gray-900 dark:text-white">
-                  <span data-vi="MỤC TIÊU NGHỀ NGHIỆP" data-en="CAREER OBJECTIVE">MỤC TIÊU NGHỀ NGHIỆP</span>
-                </h2>
-                <div class="mt-4 space-y-5 leading-relaxed text-gray-700 dark:text-gray-300">
-                  <div>
-                    <p class="m-0 font-semibold text-gray-900 dark:text-white mb-1">
-                      <span data-vi="📌 Mục Tiêu Ngắn Hạn (Short-term)" data-en="📌 Short-Term Goal">📌 Mục Tiêu Ngắn Hạn (Short-term)</span>
-                    </p>
-                    <p class="m-0">
-                      <span data-vi="Hướng tới áp dụng thành thục kiến thức CCNA trong môi trường thực tế, nâng cao khả năng thiết kế và triển khai hệ thống mạng doanh nghiệp an toàn, ổn định."
-                            data-en="Aiming to proficiently apply CCNA knowledge in real-world environments, and to strengthen the ability to design and deploy secure, stable enterprise network infrastructure.">
-                        Hướng tới áp dụng thành thục kiến thức CCNA trong môi trường thực tế, nâng cao khả năng thiết kế và triển khai hệ thống mạng doanh nghiệp an toàn, ổn định.
-                      </span>
-                    </p>
-                  </div>
-                  <div>
-                    <p class="m-0 font-semibold text-gray-900 dark:text-white mb-1">
-                      <span data-vi="🎯 Mục Tiêu Trung Hạn (Mid-term)" data-en="🎯 Mid-Term Goal">🎯 Mục Tiêu Trung Hạn (Mid-term)</span>
-                    </p>
-                    <p class="m-0">
-                      <span data-vi="Nâng cao năng lực chuyên môn để xử lý các sự cố mạng phức tạp, hướng tới vị trí Network Engineer chuyên nghiệp. Chinh phục chứng chỉ CCNP Encor và triển khai hiệu quả các giải pháp định tuyến động, bảo mật đa lớp (High Availability) nhằm đảm bảo hệ thống CNTT của doanh nghiệp luôn vận hành xuyên suốt, không gián đoạn."
-                            data-en="Enhancing professional competency to resolve complex network incidents, targeting the role of a professional Network Engineer. Pursuing the CCNP ENCOR certification while effectively implementing dynamic routing solutions and multi-layer security (High Availability) to ensure enterprise IT systems remain continuously operational and uninterrupted.">
-                        Nâng cao năng lực chuyên môn để xử lý các sự cố mạng phức tạp, hướng tới vị trí Network Engineer chuyên nghiệp. Chinh phục chứng chỉ CCNP Encor và triển khai hiệu quả các giải pháp định tuyến động, bảo mật đa lớp (High Availability) nhằm đảm bảo hệ thống CNTT của doanh nghiệp luôn vận hành xuyên suốt, không gián đoạn.
-                      </span>
-                    </p>
+              <section id="tab-objective" class="dash-panel viewFade hidden space-y-4">
+                <div class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
+                  <h2
+                    class="m-0 border-b border-gray-200 dark:border-gray-800 pb-3 font-bold uppercase tracking-widest text-sm text-gray-900 dark:text-white">
+                    <span data-vi="MỤC TIÊU NGHỀ NGHIỆP" data-en="CAREER OBJECTIVE">MỤC TIÊU NGHỀ NGHIỆP</span>
+                  </h2>
+                  <div class="mt-4 space-y-5 leading-relaxed text-gray-700 dark:text-gray-300">
+                    <div>
+                      <p class="m-0 font-semibold text-gray-900 dark:text-white mb-1">
+                        <span data-vi="📌 Mục Tiêu Ngắn Hạn (Short-term)" data-en="📌 Short-Term Goal">📌 Mục Tiêu Ngắn
+                          Hạn (Short-term)</span>
+                      </p>
+                      <p class="m-0">
+                        <span
+                          data-vi="Hướng tới áp dụng thành thục kiến thức CCNA trong môi trường thực tế, nâng cao khả năng thiết kế và triển khai hệ thống mạng doanh nghiệp an toàn, ổn định."
+                          data-en="Aiming to proficiently apply CCNA knowledge in real-world environments, and to strengthen the ability to design and deploy secure, stable enterprise network infrastructure.">
+                          Hướng tới áp dụng thành thục kiến thức CCNA trong môi trường thực tế, nâng cao khả năng thiết
+                          kế và triển khai hệ thống mạng doanh nghiệp an toàn, ổn định.
+                        </span>
+                      </p>
+                    </div>
+                    <div>
+                      <p class="m-0 font-semibold text-gray-900 dark:text-white mb-1">
+                        <span data-vi="🎯 Mục Tiêu Trung Hạn (Mid-term)" data-en="🎯 Mid-Term Goal">🎯 Mục Tiêu Trung
+                          Hạn (Mid-term)</span>
+                      </p>
+                      <p class="m-0">
+                        <span
+                          data-vi="Nâng cao năng lực chuyên môn để xử lý các sự cố mạng phức tạp, hướng tới vị trí Network Engineer chuyên nghiệp. Chinh phục chứng chỉ CCNP Encor và triển khai hiệu quả các giải pháp định tuyến động, bảo mật đa lớp (High Availability) nhằm đảm bảo hệ thống CNTT của doanh nghiệp luôn vận hành xuyên suốt, không gián đoạn."
+                          data-en="Enhancing professional competency to resolve complex network incidents, targeting the role of a professional Network Engineer. Pursuing the CCNP ENCOR certification while effectively implementing dynamic routing solutions and multi-layer security (High Availability) to ensure enterprise IT systems remain continuously operational and uninterrupted.">
+                          Nâng cao năng lực chuyên môn để xử lý các sự cố mạng phức tạp, hướng tới vị trí Network
+                          Engineer chuyên nghiệp. Chinh phục chứng chỉ CCNP Encor và triển khai hiệu quả các giải pháp
+                          định tuyến động, bảo mật đa lớp (High Availability) nhằm đảm bảo hệ thống CNTT của doanh
+                          nghiệp luôn vận hành xuyên suốt, không gián đoạn.
+                        </span>
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
 
-            <!-- =====================================================
+              <!-- =====================================================
                  TAB 2: TECHNICAL SKILLS
                  ===================================================== -->
-            <section id="tab-skills" class="dash-panel viewFade hidden">
-              <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+              <section id="tab-skills" class="dash-panel viewFade hidden">
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
 
-                <!-- Core Network -->
-                <div class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-4 md:p-5">
-                  <h3 class="m-0 border-b border-gray-200 dark:border-gray-800 pb-3 font-bold text-sm text-gray-900 dark:text-white tracking-wide">
-                    🌐 Core Network
-                  </h3>
-                  <div class="mt-4 flex flex-wrap gap-2">
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">VLAN</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Trunking</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Inter-VLAN Routing</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">L2/L3 EtherChannel</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">HSRPv2</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">OSPF</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">IPv6</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Subnetting</span>
+                  <!-- Core Network -->
+                  <div
+                    class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-4 md:p-5">
+                    <h3
+                      class="m-0 border-b border-gray-200 dark:border-gray-800 pb-3 font-bold text-sm text-gray-900 dark:text-white tracking-wide">
+                      🌐 Core Network
+                    </h3>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">VLAN</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Trunking</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Inter-VLAN
+                        Routing</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">L2/L3
+                        EtherChannel</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">HSRPv2</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">OSPF</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">IPv6</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Subnetting</span>
+                    </div>
+                  </div>
+
+                  <!-- Network Security -->
+                  <div
+                    class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-4 md:p-5">
+                    <h3
+                      class="m-0 border-b border-gray-200 dark:border-gray-800 pb-3 font-bold text-sm text-gray-900 dark:text-white tracking-wide">
+                      🔒 Network Security
+                    </h3>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Fortigate
+                        Firewall</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">SNAT
+                        / DNAT (VIP)</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">IPsec
+                        / SSL VPN</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">DoS
+                        Protection</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Web
+                        Filtering</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Antivirus
+                        / App Control</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Traffic
+                        Shaping</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">DHCP
+                        Snooping</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">DAI</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Port
+                        Security</span>
+                    </div>
+                  </div>
+
+                  <!-- System & Monitoring -->
+                  <div
+                    class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-4 md:p-5">
+                    <h3
+                      class="m-0 border-b border-gray-200 dark:border-gray-800 pb-3 font-bold text-sm text-gray-900 dark:text-white tracking-wide">
+                      🖥 System &amp; Monitoring
+                    </h3>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Windows
+                        Server 2016</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">ADDS
+                        / DNS / DHCP</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">File
+                        Server / RDP</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Linux
+                        Rocky 9</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">OpenSSH
+                        / vsftpd</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Postfix
+                        / Dovecot</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">NFS
+                        / Samba</span>
+                      <span
+                        class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">PRTG
+                        / SNMP</span>
+                    </div>
                   </div>
                 </div>
+              </section>
 
-                <!-- Network Security -->
-                <div class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-4 md:p-5">
-                  <h3 class="m-0 border-b border-gray-200 dark:border-gray-800 pb-3 font-bold text-sm text-gray-900 dark:text-white tracking-wide">
-                    🔒 Network Security
-                  </h3>
-                  <div class="mt-4 flex flex-wrap gap-2">
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Fortigate Firewall</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">SNAT / DNAT (VIP)</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">IPsec / SSL VPN</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">DoS Protection</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Web Filtering</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Antivirus / App Control</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Traffic Shaping</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">DHCP Snooping</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">DAI</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Port Security</span>
-                  </div>
-                </div>
-
-                <!-- System & Monitoring -->
-                <div class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-4 md:p-5">
-                  <h3 class="m-0 border-b border-gray-200 dark:border-gray-800 pb-3 font-bold text-sm text-gray-900 dark:text-white tracking-wide">
-                    🖥 System &amp; Monitoring
-                  </h3>
-                  <div class="mt-4 flex flex-wrap gap-2">
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Windows Server 2016</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">ADDS / DNS / DHCP</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">File Server / RDP</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Linux Rocky 9</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">OpenSSH / vsftpd</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">Postfix / Dovecot</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">NFS / Samba</span>
-                    <span class="skill-badge inline-flex rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#111114] px-2.5 py-1 text-xs font-medium text-gray-800 dark:text-gray-200">PRTG / SNMP</span>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <!-- =====================================================
+              <!-- =====================================================
                  TAB 3: PROJECTS (S-A-R format)
                  ===================================================== -->
-            <section id="tab-projects" class="dash-panel viewFade hidden space-y-4">
+              <section id="tab-projects" class="dash-panel viewFade hidden space-y-4">
 
-              <!-- Project 1 -->
-              <article class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
-                <h3 class="m-0 font-bold text-gray-900 dark:text-white">
-                  <span data-vi="1. Enterprise Network Design (CCNA Mega Lab)" data-en="1. Enterprise Network Design (CCNA Mega Lab)">
-                    1. Enterprise Network Design (CCNA Mega Lab)
-                  </span>
-                </h3>
-                <div class="mt-4 space-y-3 leading-relaxed text-sm text-gray-700 dark:text-gray-300">
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="🔍 Tình huống:" data-en="🔍 Situation:">🔍 Tình huống:</span>
+                <!-- Project 1 -->
+                <article
+                  class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
+                  <h3 class="m-0 font-bold text-gray-900 dark:text-white">
+                    <span data-vi="1. Enterprise Network Design (CCNA Mega Lab)"
+                      data-en="1. Enterprise Network Design (CCNA Mega Lab)">
+                      1. Enterprise Network Design (CCNA Mega Lab)
                     </span>
-                    <span data-vi=" Thiết kế và mô phỏng hạ tầng mạng Campus cho 2 văn phòng chi nhánh."
-                          data-en=" Designed and simulated a Campus network infrastructure for 2 branch offices.">
-                      &nbsp;Thiết kế và mô phỏng hạ tầng mạng Campus cho 2 văn phòng chi nhánh.
-                    </span>
-                  </p>
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="⚙️ Hành động:" data-en="⚙️ Action:">⚙️ Hành động:</span>
-                    </span>
-                    <span data-vi=" Triển khai kiến trúc mạng đa tầng. Cấu hình L2/L3 EtherChannel và giao thức OSPF để định tuyến. Đảm bảo tính sẵn sàng cao (HA) bằng HSRPv2. Tăng cường bảo mật Layer 2 với DHCP Snooping, DAI và Port Security. Quản trị thiết bị tập trung qua SSH, Syslog và NTP."
-                          data-en=" Implemented a multi-tier network architecture. Configured L2/L3 EtherChannel and OSPF for dynamic routing. Ensured High Availability (HA) using HSRPv2. Hardened Layer 2 security with DHCP Snooping, Dynamic ARP Inspection (DAI), and Port Security. Managed devices centrally via SSH, Syslog, and NTP.">
-                      &nbsp;Triển khai kiến trúc mạng đa tầng. Cấu hình L2/L3 EtherChannel và giao thức OSPF để định tuyến. Đảm bảo tính sẵn sàng cao (HA) bằng HSRPv2. Tăng cường bảo mật Layer 2 với DHCP Snooping, DAI và Port Security. Quản trị thiết bị tập trung qua SSH, Syslog và NTP.
-                    </span>
-                  </p>
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="✅ Kết quả:" data-en="✅ Result:">✅ Kết quả:</span>
-                    </span>
-                    <span data-vi=" Hệ thống vận hành ổn định, tự động định tuyến lại khi đứt cáp (failover), mô phỏng thành công môi trường mạng chuẩn doanh nghiệp."
-                          data-en=" The system operated stably with automatic rerouting upon link failure (failover), successfully simulating a production-grade enterprise network environment.">
-                      &nbsp;Hệ thống vận hành ổn định, tự động định tuyến lại khi đứt cáp (failover), mô phỏng thành công môi trường mạng chuẩn doanh nghiệp.
-                    </span>
-                  </p>
-                  <p class="m-0 text-xs font-mono text-gray-500 dark:text-gray-500 pt-1">
-                    Tools: Cisco Packet Tracer &nbsp;|&nbsp; VLAN · Trunk · EtherChannel · HSRPv2 · OSPF · DHCP Snooping · DAI · Port Security
-                  </p>
-                </div>
-              </article>
+                  </h3>
+                  <div class="mt-4 space-y-3 leading-relaxed text-sm text-gray-700 dark:text-gray-300">
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="🔍 Tình huống:" data-en="🔍 Situation:">🔍 Tình huống:</span>
+                      </span>
+                      <span data-vi=" Thiết kế và mô phỏng hạ tầng mạng Campus cho 2 văn phòng chi nhánh."
+                        data-en=" Designed and simulated a Campus network infrastructure for 2 branch offices.">
+                        &nbsp;Thiết kế và mô phỏng hạ tầng mạng Campus cho 2 văn phòng chi nhánh.
+                      </span>
+                    </p>
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="⚙️ Hành động:" data-en="⚙️ Action:">⚙️ Hành động:</span>
+                      </span>
+                      <span
+                        data-vi=" Triển khai kiến trúc mạng đa tầng. Cấu hình L2/L3 EtherChannel và giao thức OSPF để định tuyến. Đảm bảo tính sẵn sàng cao (HA) bằng HSRPv2. Tăng cường bảo mật Layer 2 với DHCP Snooping, DAI và Port Security. Quản trị thiết bị tập trung qua SSH, Syslog và NTP."
+                        data-en=" Implemented a multi-tier network architecture. Configured L2/L3 EtherChannel and OSPF for dynamic routing. Ensured High Availability (HA) using HSRPv2. Hardened Layer 2 security with DHCP Snooping, Dynamic ARP Inspection (DAI), and Port Security. Managed devices centrally via SSH, Syslog, and NTP.">
+                        &nbsp;Triển khai kiến trúc mạng đa tầng. Cấu hình L2/L3 EtherChannel và giao thức OSPF để định
+                        tuyến. Đảm bảo tính sẵn sàng cao (HA) bằng HSRPv2. Tăng cường bảo mật Layer 2 với DHCP Snooping,
+                        DAI và Port Security. Quản trị thiết bị tập trung qua SSH, Syslog và NTP.
+                      </span>
+                    </p>
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="✅ Kết quả:" data-en="✅ Result:">✅ Kết quả:</span>
+                      </span>
+                      <span
+                        data-vi=" Hệ thống vận hành ổn định, tự động định tuyến lại khi đứt cáp (failover), mô phỏng thành công môi trường mạng chuẩn doanh nghiệp."
+                        data-en=" The system operated stably with automatic rerouting upon link failure (failover), successfully simulating a production-grade enterprise network environment.">
+                        &nbsp;Hệ thống vận hành ổn định, tự động định tuyến lại khi đứt cáp (failover), mô phỏng thành
+                        công môi trường mạng chuẩn doanh nghiệp.
+                      </span>
+                    </p>
+                    <img src="./images/ccna_lab.png" alt="Topology" data-vi="Mô hình mạng" data-en="Network Topology"
+                      class="mt-4 w-full h-auto rounded-lg border border-gray-200 dark:border-gray-800 object-cover opacity-90 hover:opacity-100 transition-opacity">
+                    <div>
+                      <a href="./docs/Copy of YEUCAULAB_TiengViet.docx" download class="topbar-btn inline-block">
+                        <span data-vi="📄 Tải Báo Cáo (.docx)" data-en="📄 Download Report (.docx)">📄 Tải Báo Cáo
+                          (.docx)</span>
+                      </a>
+                    </div>
+                    <p class="m-0 text-xs font-mono text-gray-500 dark:text-gray-500 pt-1">
+                      Tools: Cisco Packet Tracer &nbsp;|&nbsp; VLAN · Trunk · EtherChannel · HSRPv2 · OSPF · DHCP
+                      Snooping · DAI · Port Security
+                    </p>
+                  </div>
+                </article>
 
-              <!-- Project 2 -->
-              <article class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
-                <h3 class="m-0 font-bold text-gray-900 dark:text-white">
-                  <span data-vi="2. Fortigate Perimeter Security Implementation" data-en="2. Fortigate Perimeter Security Implementation">
-                    2. Fortigate Perimeter Security Implementation
-                  </span>
-                </h3>
-                <div class="mt-4 space-y-3 leading-relaxed text-sm text-gray-700 dark:text-gray-300">
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="🔍 Tình huống:" data-en="🔍 Situation:">🔍 Tình huống:</span>
+                <!-- Project 2 -->
+                <article
+                  class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
+                  <h3 class="m-0 font-bold text-gray-900 dark:text-white">
+                    <span data-vi="2. Fortigate Perimeter Security Implementation"
+                      data-en="2. Fortigate Perimeter Security Implementation">
+                      2. Fortigate Perimeter Security Implementation
                     </span>
-                    <span data-vi=" Triển khai hệ thống tường lửa bảo vệ mạng nội bộ và quản lý truy cập Internet."
-                          data-en=" Deployed a perimeter firewall system to protect the internal network and manage Internet access.">
-                      &nbsp;Triển khai hệ thống tường lửa bảo vệ mạng nội bộ và quản lý truy cập Internet.
-                    </span>
-                  </p>
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="⚙️ Hành động:" data-en="⚙️ Action:">⚙️ Hành động:</span>
-                    </span>
-                    <span data-vi=" Cấu hình Source NAT (SNAT) cho người dùng ra Internet và Destination NAT (VIPs) để public máy chủ CCTV an toàn. Áp dụng các Security Profiles: Antivirus chặn file EICAR, Web Filter chặn tên miền không mong muốn, Application Control chặn BitTorrent và cấu hình DoS Protection chống Ping Flood. Thiết lập Traffic Shaping giới hạn và đảm bảo băng thông."
-                          data-en=" Configured Source NAT (SNAT) for outbound Internet users and Destination NAT (Virtual IPs) to securely publish the CCTV server. Applied Security Profiles: Antivirus to block EICAR test files, Web Filter to block unwanted domains, Application Control to block BitTorrent, and DoS Protection to mitigate Ping Flood attacks. Implemented Traffic Shaping to limit and guarantee bandwidth allocation.">
-                      &nbsp;Cấu hình Source NAT (SNAT) cho người dùng ra Internet và Destination NAT (VIPs) để public máy chủ CCTV an toàn. Áp dụng các Security Profiles: Antivirus chặn file EICAR, Web Filter chặn tên miền không mong muốn, Application Control chặn BitTorrent và cấu hình DoS Protection chống Ping Flood. Thiết lập Traffic Shaping giới hạn và đảm bảo băng thông.
-                    </span>
-                  </p>
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="✅ Kết quả:" data-en="✅ Result:">✅ Kết quả:</span>
-                    </span>
-                    <span data-vi=" Kiểm soát thành công 100% lưu lượng in/outbound, bảo vệ mạng LAN khỏi các cuộc tấn công và cấp phát băng thông hiệu quả."
-                          data-en=" Successfully controlled 100% of inbound/outbound traffic, protected the LAN from network attacks, and achieved effective bandwidth allocation.">
-                      &nbsp;Kiểm soát thành công 100% lưu lượng in/outbound, bảo vệ mạng LAN khỏi các cuộc tấn công và cấp phát băng thông hiệu quả.
-                    </span>
-                  </p>
-                  <p class="m-0 text-xs font-mono text-gray-500 dark:text-gray-500 pt-1">
-                    Tools: VMware · EVE-NG · FortiGate &nbsp;|&nbsp; SNAT · DNAT · VIP · DoS Protection · Web Filter · Antivirus · Traffic Shaping
-                  </p>
-                </div>
-              </article>
+                  </h3>
+                  <div class="mt-4 space-y-3 leading-relaxed text-sm text-gray-700 dark:text-gray-300">
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="🔍 Tình huống:" data-en="🔍 Situation:">🔍 Tình huống:</span>
+                      </span>
+                      <span data-vi=" Triển khai hệ thống tường lửa bảo vệ mạng nội bộ và quản lý truy cập Internet."
+                        data-en=" Deployed a perimeter firewall system to protect the internal network and manage Internet access.">
+                        &nbsp;Triển khai hệ thống tường lửa bảo vệ mạng nội bộ và quản lý truy cập Internet.
+                      </span>
+                    </p>
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="⚙️ Hành động:" data-en="⚙️ Action:">⚙️ Hành động:</span>
+                      </span>
+                      <span
+                        data-vi=" Cấu hình Source NAT (SNAT) cho người dùng ra Internet và Destination NAT (VIPs) để public máy chủ CCTV an toàn. Áp dụng các Security Profiles: Antivirus chặn file EICAR, Web Filter chặn tên miền không mong muốn, Application Control chặn BitTorrent và cấu hình DoS Protection chống Ping Flood. Thiết lập Traffic Shaping giới hạn và đảm bảo băng thông."
+                        data-en=" Configured Source NAT (SNAT) for outbound Internet users and Destination NAT (Virtual IPs) to securely publish the CCTV server. Applied Security Profiles: Antivirus to block EICAR test files, Web Filter to block unwanted domains, Application Control to block BitTorrent, and DoS Protection to mitigate Ping Flood attacks. Implemented Traffic Shaping to limit and guarantee bandwidth allocation.">
+                        &nbsp;Cấu hình Source NAT (SNAT) cho người dùng ra Internet và Destination NAT (VIPs) để public
+                        máy chủ CCTV an toàn. Áp dụng các Security Profiles: Antivirus chặn file EICAR, Web Filter chặn
+                        tên miền không mong muốn, Application Control chặn BitTorrent và cấu hình DoS Protection chống
+                        Ping Flood. Thiết lập Traffic Shaping giới hạn và đảm bảo băng thông.
+                      </span>
+                    </p>
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="✅ Kết quả:" data-en="✅ Result:">✅ Kết quả:</span>
+                      </span>
+                      <span
+                        data-vi=" Kiểm soát thành công 100% lưu lượng in/outbound, bảo vệ mạng LAN khỏi các cuộc tấn công và cấp phát băng thông hiệu quả."
+                        data-en=" Successfully controlled 100% of inbound/outbound traffic, protected the LAN from network attacks, and achieved effective bandwidth allocation.">
+                        &nbsp;Kiểm soát thành công 100% lưu lượng in/outbound, bảo vệ mạng LAN khỏi các cuộc tấn công và
+                        cấp phát băng thông hiệu quả.
+                      </span>
+                    </p>
+                    <img src="./images/fortigate_lab.png" alt="Topology" data-vi="Mô hình mạng"
+                      data-en="Network Topology"
+                      class="mt-4 w-full h-auto rounded-lg border border-gray-200 dark:border-gray-800 object-cover opacity-90 hover:opacity-100 transition-opacity">
+                    <div>
+                      <a href="./docs/Copy of Fortigate.docx" download class="topbar-btn inline-block">
+                        <span data-vi="📄 Tải Báo Cáo (.docx)" data-en="📄 Download Report (.docx)">📄 Tải Báo Cáo
+                          (.docx)</span>
+                      </a>
+                    </div>
+                    <p class="m-0 text-xs font-mono text-gray-500 dark:text-gray-500 pt-1">
+                      Tools: VMware · EVE-NG · FortiGate &nbsp;|&nbsp; SNAT · DNAT · VIP · DoS Protection · Web Filter ·
+                      Antivirus · Traffic Shaping
+                    </p>
+                  </div>
+                </article>
 
-              <!-- Project 3 -->
-              <article class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
-                <h3 class="m-0 font-bold text-gray-900 dark:text-white">
-                  <span data-vi="3. System Administration &amp; Infrastructure Monitoring" data-en="3. System Administration &amp; Infrastructure Monitoring">
-                    3. System Administration &amp; Infrastructure Monitoring
-                  </span>
-                </h3>
-                <div class="mt-4 space-y-3 leading-relaxed text-sm text-gray-700 dark:text-gray-300">
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="🔍 Tình huống:" data-en="🔍 Situation:">🔍 Tình huống:</span>
+                <!-- Project 3 -->
+                <article
+                  class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
+                  <h3 class="m-0 font-bold text-gray-900 dark:text-white">
+                    <span data-vi="3. System Administration &amp; Infrastructure Monitoring"
+                      data-en="3. System Administration &amp; Infrastructure Monitoring">
+                      3. System Administration &amp; Infrastructure Monitoring
                     </span>
-                    <span data-vi=" Xây dựng và giám sát hệ thống máy chủ dịch vụ cốt lõi."
-                          data-en=" Built and monitored a core services server infrastructure.">
-                      &nbsp;Xây dựng và giám sát hệ thống máy chủ dịch vụ cốt lõi.
-                    </span>
-                  </p>
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="⚙️ Hành động:" data-en="⚙️ Action:">⚙️ Hành động:</span>
-                    </span>
-                    <span data-vi=" Triển khai Windows Server 2016 làm Domain Controller (ADDS), tích hợp DNS, DHCP và phân quyền File Server qua NTFS. Xây dựng các dịch vụ mạng (FTP, Mail, NFS, Samba) trên Linux Rocky 9. Tích hợp hệ thống giám sát PRTG qua giao thức SNMP (Read-Only) để theo dõi băng thông các cổng kết nối theo thời gian thực."
-                          data-en=" Deployed Windows Server 2016 as a Domain Controller (ADDS), integrating DNS, DHCP, and NTFS-based File Server permission management. Provisioned network services (FTP via vsftpd, Mail via Postfix/Dovecot, NFS, Samba) on Linux Rocky 9. Integrated PRTG monitoring via Read-Only SNMP to track interface bandwidth in real time.">
-                      &nbsp;Triển khai Windows Server 2016 làm Domain Controller (ADDS), tích hợp DNS, DHCP và phân quyền File Server qua NTFS. Xây dựng các dịch vụ mạng (FTP, Mail, NFS, Samba) trên Linux Rocky 9. Tích hợp hệ thống giám sát PRTG qua giao thức SNMP (Read-Only) để theo dõi băng thông các cổng kết nối theo thời gian thực.
-                    </span>
-                  </p>
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="✅ Kết quả:" data-en="✅ Result:">✅ Kết quả:</span>
-                    </span>
-                    <span data-vi=" Tối ưu hóa việc quản lý định danh người dùng tập trung và đảm bảo khả năng giám sát, phản ứng nhanh với các sự cố quá tải băng thông."
-                          data-en=" Optimized centralized user identity management and ensured rapid visibility and response capability for bandwidth overload incidents.">
-                      &nbsp;Tối ưu hóa việc quản lý định danh người dùng tập trung và đảm bảo khả năng giám sát, phản ứng nhanh với các sự cố quá tải băng thông.
-                    </span>
-                  </p>
-                  <p class="m-0 text-xs font-mono text-gray-500 dark:text-gray-500 pt-1">
-                    Tools: VMware · Windows Server 2016 · Linux Rocky 9 · PRTG &nbsp;|&nbsp; ADDS · DNS · DHCP · NTFS · vsftpd · Postfix · SNMP
-                  </p>
-                </div>
-              </article>
+                  </h3>
+                  <div class="mt-4 space-y-3 leading-relaxed text-sm text-gray-700 dark:text-gray-300">
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="🔍 Tình huống:" data-en="🔍 Situation:">🔍 Tình huống:</span>
+                      </span>
+                      <span data-vi=" Xây dựng và giám sát hệ thống máy chủ dịch vụ cốt lõi."
+                        data-en=" Built and monitored a core services server infrastructure.">
+                        &nbsp;Xây dựng và giám sát hệ thống máy chủ dịch vụ cốt lõi.
+                      </span>
+                    </p>
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="⚙️ Hành động:" data-en="⚙️ Action:">⚙️ Hành động:</span>
+                      </span>
+                      <span
+                        data-vi=" Triển khai Windows Server 2016 làm Domain Controller (ADDS), tích hợp DNS, DHCP và phân quyền File Server qua NTFS. Xây dựng các dịch vụ mạng (FTP, Mail, NFS, Samba) trên Linux Rocky 9. Tích hợp hệ thống giám sát PRTG qua giao thức SNMP (Read-Only) để theo dõi băng thông các cổng kết nối theo thời gian thực."
+                        data-en=" Deployed Windows Server 2016 as a Domain Controller (ADDS), integrating DNS, DHCP, and NTFS-based File Server permission management. Provisioned network services (FTP via vsftpd, Mail via Postfix/Dovecot, NFS, Samba) on Linux Rocky 9. Integrated PRTG monitoring via Read-Only SNMP to track interface bandwidth in real time.">
+                        &nbsp;Triển khai Windows Server 2016 làm Domain Controller (ADDS), tích hợp DNS, DHCP và phân
+                        quyền File Server qua NTFS. Xây dựng các dịch vụ mạng (FTP, Mail, NFS, Samba) trên Linux Rocky
+                        9. Tích hợp hệ thống giám sát PRTG qua giao thức SNMP (Read-Only) để theo dõi băng thông các
+                        cổng kết nối theo thời gian thực.
+                      </span>
+                    </p>
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="✅ Kết quả:" data-en="✅ Result:">✅ Kết quả:</span>
+                      </span>
+                      <span
+                        data-vi=" Tối ưu hóa việc quản lý định danh người dùng tập trung và đảm bảo khả năng giám sát, phản ứng nhanh với các sự cố quá tải băng thông."
+                        data-en=" Optimized centralized user identity management and ensured rapid visibility and response capability for bandwidth overload incidents.">
+                        &nbsp;Tối ưu hóa việc quản lý định danh người dùng tập trung và đảm bảo khả năng giám sát, phản
+                        ứng nhanh với các sự cố quá tải băng thông.
+                      </span>
+                    </p>
+                    <img src="./images/winserver_lab.png" alt="Topology" data-vi="Mô hình mạng"
+                      data-en="Network Topology"
+                      class="mt-4 w-full h-auto rounded-lg border border-gray-200 dark:border-gray-800 object-cover opacity-90 hover:opacity-100 transition-opacity">
+                    <div>
+                      <a href="./docs/Copy of WinServer2016.docx" download class="topbar-btn inline-block">
+                        <span data-vi="📄 Tải Báo Cáo (.docx)" data-en="📄 Download Report (.docx)">📄 Tải Báo Cáo
+                          (.docx)</span>
+                      </a>
+                    </div>
+                    <p class="m-0 text-xs font-mono text-gray-500 dark:text-gray-500 pt-1">
+                      Tools: VMware · Windows Server 2016 · Linux Rocky 9 · PRTG &nbsp;|&nbsp; ADDS · DNS · DHCP · NTFS
+                      · vsftpd · Postfix · SNMP
+                    </p>
+                  </div>
+                </article>
 
-              <!-- Project 4 -->
-              <article class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
-                <h3 class="m-0 font-bold text-gray-900 dark:text-white">
-                  <span data-vi="4. Linux Open-Source Network Services (Rocky 9)" data-en="4. Linux Open-Source Network Services (Rocky 9)">
-                    4. Linux Open-Source Network Services (Rocky 9)
-                  </span>
-                </h3>
-                <div class="mt-4 space-y-3 leading-relaxed text-sm text-gray-700 dark:text-gray-300">
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="🔍 Tình huống:" data-en="🔍 Situation:">🔍 Tình huống:</span>
+                <!-- Project 4 -->
+                <article
+                  class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
+                  <h3 class="m-0 font-bold text-gray-900 dark:text-white">
+                    <span data-vi="4. Linux Open-Source Network Services (Rocky 9)"
+                      data-en="4. Linux Open-Source Network Services (Rocky 9)">
+                      4. Linux Open-Source Network Services (Rocky 9)
                     </span>
-                    <span data-vi=" Triển khai các dịch vụ mạng mã nguồn mở trên nền tảng Linux phục vụ vận hành nội bộ."
-                          data-en=" Deployed open-source network services on a Linux platform to support internal operations.">
-                      &nbsp;Triển khai các dịch vụ mạng mã nguồn mở trên nền tảng Linux phục vụ vận hành nội bộ.
-                    </span>
-                  </p>
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="⚙️ Hành động:" data-en="⚙️ Action:">⚙️ Hành động:</span>
-                    </span>
-                    <span data-vi=" Cài đặt và cấu hình toàn diện các dịch vụ cốt lõi trên Rocky Linux 9 bao gồm: SSH quản trị từ xa, Web/FTP Server (vsftpd), DNS Server (bind), Mail Server (Postfix/Dovecot/s-nail), hệ thống chia sẻ file (NFS, Samba), cấp phát IP (DHCP) và đồng bộ thời gian (NTP)."
-                          data-en=" Comprehensively installed and configured core services on Rocky Linux 9, including: SSH for remote administration, Web/FTP Server (vsftpd), DNS Server (bind), Mail Server (Postfix/Dovecot/s-nail), file sharing systems (NFS, Samba), IP address assignment (DHCP), and time synchronization (NTP).">
-                      &nbsp;Cài đặt và cấu hình toàn diện các dịch vụ cốt lõi trên Rocky Linux 9 bao gồm: SSH quản trị từ xa, Web/FTP Server (vsftpd), DNS Server (bind), Mail Server (Postfix/Dovecot/s-nail), hệ thống chia sẻ file (NFS, Samba), cấp phát IP (DHCP) và đồng bộ thời gian (NTP).
-                    </span>
-                  </p>
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="✅ Kết quả:" data-en="✅ Result:">✅ Kết quả:</span>
-                    </span>
-                    <span data-vi=" Xây dựng thành công hạ tầng dịch vụ mạng độc lập, cho phép client truy cập phân giải tên miền, gửi nhận mail và chia sẻ tài nguyên an toàn."
-                          data-en=" Successfully built a self-contained network service infrastructure, enabling clients to perform domain name resolution, send and receive mail, and share resources securely.">
-                      &nbsp;Xây dựng thành công hạ tầng dịch vụ mạng độc lập, cho phép client truy cập phân giải tên miền, gửi nhận mail và chia sẻ tài nguyên an toàn.
-                    </span>
-                  </p>
-                  <p class="m-0 text-xs font-mono text-gray-500 dark:text-gray-500 pt-1">
-                    Tools: Linux Rocky 9 · OpenSSH · vsftpd · bind DNS · Postfix · Dovecot · NFS · Samba · DHCP · NTP
-                  </p>
-                </div>
-              </article>
+                  </h3>
+                  <div class="mt-4 space-y-3 leading-relaxed text-sm text-gray-700 dark:text-gray-300">
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="🔍 Tình huống:" data-en="🔍 Situation:">🔍 Tình huống:</span>
+                      </span>
+                      <span
+                        data-vi=" Triển khai các dịch vụ mạng mã nguồn mở trên nền tảng Linux phục vụ vận hành nội bộ."
+                        data-en=" Deployed open-source network services on a Linux platform to support internal operations.">
+                        &nbsp;Triển khai các dịch vụ mạng mã nguồn mở trên nền tảng Linux phục vụ vận hành nội bộ.
+                      </span>
+                    </p>
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="⚙️ Hành động:" data-en="⚙️ Action:">⚙️ Hành động:</span>
+                      </span>
+                      <span
+                        data-vi=" Cài đặt và cấu hình toàn diện các dịch vụ cốt lõi trên Rocky Linux 9 bao gồm: SSH quản trị từ xa, Web/FTP Server (vsftpd), DNS Server (bind), Mail Server (Postfix/Dovecot/s-nail), hệ thống chia sẻ file (NFS, Samba), cấp phát IP (DHCP) và đồng bộ thời gian (NTP)."
+                        data-en=" Comprehensively installed and configured core services on Rocky Linux 9, including: SSH for remote administration, Web/FTP Server (vsftpd), DNS Server (bind), Mail Server (Postfix/Dovecot/s-nail), file sharing systems (NFS, Samba), IP address assignment (DHCP), and time synchronization (NTP).">
+                        &nbsp;Cài đặt và cấu hình toàn diện các dịch vụ cốt lõi trên Rocky Linux 9 bao gồm: SSH quản trị
+                        từ xa, Web/FTP Server (vsftpd), DNS Server (bind), Mail Server (Postfix/Dovecot/s-nail), hệ
+                        thống chia sẻ file (NFS, Samba), cấp phát IP (DHCP) và đồng bộ thời gian (NTP).
+                      </span>
+                    </p>
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="✅ Kết quả:" data-en="✅ Result:">✅ Kết quả:</span>
+                      </span>
+                      <span
+                        data-vi=" Xây dựng thành công hạ tầng dịch vụ mạng độc lập, cho phép client truy cập phân giải tên miền, gửi nhận mail và chia sẻ tài nguyên an toàn."
+                        data-en=" Successfully built a self-contained network service infrastructure, enabling clients to perform domain name resolution, send and receive mail, and share resources securely.">
+                        &nbsp;Xây dựng thành công hạ tầng dịch vụ mạng độc lập, cho phép client truy cập phân giải tên
+                        miền, gửi nhận mail và chia sẻ tài nguyên an toàn.
+                      </span>
+                    </p>
+                    <img src="./images/linux_lab.png" alt="Topology" data-vi="Mô hình mạng" data-en="Network Topology"
+                      class="mt-4 w-full h-auto rounded-lg border border-gray-200 dark:border-gray-800 object-cover opacity-90 hover:opacity-100 transition-opacity">
+                    <div>
+                      <a href="./docs/Copy of LinuxRocky9.docx" download class="topbar-btn inline-block">
+                        <span data-vi="📄 Tải Báo Cáo (.docx)" data-en="📄 Download Report (.docx)">📄 Tải Báo Cáo
+                          (.docx)</span>
+                      </a>
+                    </div>
+                    <p class="m-0 text-xs font-mono text-gray-500 dark:text-gray-500 pt-1">
+                      Tools: Linux Rocky 9 · OpenSSH · vsftpd · bind DNS · Postfix · Dovecot · NFS · Samba · DHCP · NTP
+                    </p>
+                  </div>
+                </article>
 
-              <!-- Project 5 -->
-              <article class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
-                <h3 class="m-0 font-bold text-gray-900 dark:text-white">
-                  <span data-vi="5. Infrastructure Monitoring with PRTG" data-en="5. Infrastructure Monitoring with PRTG">
-                    5. Infrastructure Monitoring with PRTG
-                  </span>
-                </h3>
-                <div class="mt-4 space-y-3 leading-relaxed text-sm text-gray-700 dark:text-gray-300">
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="🔍 Tình huống:" data-en="🔍 Situation:">🔍 Tình huống:</span>
+                <!-- Project 5 -->
+                <article
+                  class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
+                  <h3 class="m-0 font-bold text-gray-900 dark:text-white">
+                    <span data-vi="5. Infrastructure Monitoring with PRTG"
+                      data-en="5. Infrastructure Monitoring with PRTG">
+                      5. Infrastructure Monitoring with PRTG
                     </span>
-                    <span data-vi=" Xây dựng hệ thống giám sát tập trung để theo dõi tình trạng thiết bị mạng và lưu lượng băng thông."
-                          data-en=" Built a centralized monitoring system to track the health of network devices and bandwidth utilization.">
-                      &nbsp;Xây dựng hệ thống giám sát tập trung để theo dõi tình trạng thiết bị mạng và lưu lượng băng thông.
-                    </span>
-                  </p>
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="⚙️ Hành động:" data-en="⚙️ Action:">⚙️ Hành động:</span>
-                    </span>
-                    <span data-vi=" Khởi tạo PRTG Network Monitor. Thiết lập giao thức SNMP (Read-Only) trên các Router Cisco với community string bảo mật. Khai báo thiết bị (Local Probe) và cấu hình các Sensor chuyên dụng để quét toàn bộ dải cổng (Interface range)."
-                          data-en=" Initialized PRTG Network Monitor. Configured SNMP (Read-Only) on Cisco Routers with a secured community string. Registered devices via Local Probe and configured dedicated Sensors to scan the full interface range.">
-                      &nbsp;Khởi tạo PRTG Network Monitor. Thiết lập giao thức SNMP (Read-Only) trên các Router Cisco với community string bảo mật. Khai báo thiết bị (Local Probe) và cấu hình các Sensor chuyên dụng để quét toàn bộ dải cổng (Interface range).
-                    </span>
-                  </p>
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="✅ Kết quả:" data-en="✅ Result:">✅ Kết quả:</span>
-                    </span>
-                    <span data-vi=" Trực quan hóa dữ liệu mạng theo thời gian thực (Real-time). Phân biệt rõ trạng thái Up/Down của từng cổng vật lý và vẽ biểu đồ giám sát băng thông in/outbound chính xác."
-                          data-en=" Achieved real-time visualization of network data. Clearly distinguished the Up/Down status of each physical interface and generated accurate inbound/outbound bandwidth monitoring graphs.">
-                      &nbsp;Trực quan hóa dữ liệu mạng theo thời gian thực (Real-time). Phân biệt rõ trạng thái Up/Down của từng cổng vật lý và vẽ biểu đồ giám sát băng thông in/outbound chính xác.
-                    </span>
-                  </p>
-                  <p class="m-0 text-xs font-mono text-gray-500 dark:text-gray-500 pt-1">
-                    Tools: PRTG Network Monitor · Cisco Router · SNMPv2/v3 · Bandwidth Sensors · Real-time Graphing
-                  </p>
-                </div>
-              </article>
+                  </h3>
+                  <div class="mt-4 space-y-3 leading-relaxed text-sm text-gray-700 dark:text-gray-300">
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="🔍 Tình huống:" data-en="🔍 Situation:">🔍 Tình huống:</span>
+                      </span>
+                      <span
+                        data-vi=" Xây dựng hệ thống giám sát tập trung để theo dõi tình trạng thiết bị mạng và lưu lượng băng thông."
+                        data-en=" Built a centralized monitoring system to track the health of network devices and bandwidth utilization.">
+                        &nbsp;Xây dựng hệ thống giám sát tập trung để theo dõi tình trạng thiết bị mạng và lưu lượng
+                        băng thông.
+                      </span>
+                    </p>
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="⚙️ Hành động:" data-en="⚙️ Action:">⚙️ Hành động:</span>
+                      </span>
+                      <span
+                        data-vi=" Khởi tạo PRTG Network Monitor. Thiết lập giao thức SNMP (Read-Only) trên các Router Cisco với community string bảo mật. Khai báo thiết bị (Local Probe) và cấu hình các Sensor chuyên dụng để quét toàn bộ dải cổng (Interface range)."
+                        data-en=" Initialized PRTG Network Monitor. Configured SNMP (Read-Only) on Cisco Routers with a secured community string. Registered devices via Local Probe and configured dedicated Sensors to scan the full interface range.">
+                        &nbsp;Khởi tạo PRTG Network Monitor. Thiết lập giao thức SNMP (Read-Only) trên các Router Cisco
+                        với community string bảo mật. Khai báo thiết bị (Local Probe) và cấu hình các Sensor chuyên dụng
+                        để quét toàn bộ dải cổng (Interface range).
+                      </span>
+                    </p>
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="✅ Kết quả:" data-en="✅ Result:">✅ Kết quả:</span>
+                      </span>
+                      <span
+                        data-vi=" Trực quan hóa dữ liệu mạng theo thời gian thực (Real-time). Phân biệt rõ trạng thái Up/Down của từng cổng vật lý và vẽ biểu đồ giám sát băng thông in/outbound chính xác."
+                        data-en=" Achieved real-time visualization of network data. Clearly distinguished the Up/Down status of each physical interface and generated accurate inbound/outbound bandwidth monitoring graphs.">
+                        &nbsp;Trực quan hóa dữ liệu mạng theo thời gian thực (Real-time). Phân biệt rõ trạng thái
+                        Up/Down của từng cổng vật lý và vẽ biểu đồ giám sát băng thông in/outbound chính xác.
+                      </span>
+                    </p>
+                    <img src="./images/prtg_lab.png" alt="Topology" data-vi="Mô hình mạng" data-en="Network Topology"
+                      class="mt-4 w-full h-auto rounded-lg border border-gray-200 dark:border-gray-800 object-cover opacity-90 hover:opacity-100 transition-opacity">
+                    <div>
+                      <a href="./docs/Copy of PRTG.docx" download class="topbar-btn inline-block">
+                        <span data-vi="📄 Tải Báo Cáo (.docx)" data-en="📄 Download Report (.docx)">📄 Tải Báo Cáo
+                          (.docx)</span>
+                      </a>
+                    </div>
+                    <p class="m-0 text-xs font-mono text-gray-500 dark:text-gray-500 pt-1">
+                      Tools: PRTG Network Monitor · Cisco Router · SNMPv2/v3 · Bandwidth Sensors · Real-time Graphing
+                    </p>
+                  </div>
+                </article>
 
-              <!-- Project 6 -->
-              <article class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
-                <h3 class="m-0 font-bold text-gray-900 dark:text-white">
-                  <span data-vi="6. Cloud Networking &amp; Virtualization (GCP)" data-en="6. Cloud Networking &amp; Virtualization (GCP)">
-                    6. Cloud Networking &amp; Virtualization (GCP)
-                  </span>
-                </h3>
-                <div class="mt-4 space-y-3 leading-relaxed text-sm text-gray-700 dark:text-gray-300">
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="🔍 Tình huống:" data-en="🔍 Situation:">🔍 Tình huống:</span>
+                <!-- Project 6 -->
+                <article
+                  class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
+                  <h3 class="m-0 font-bold text-gray-900 dark:text-white">
+                    <span data-vi="6. Cloud Networking &amp; Virtualization (GCP)"
+                      data-en="6. Cloud Networking &amp; Virtualization (GCP)">
+                      6. Cloud Networking &amp; Virtualization (GCP)
                     </span>
-                    <span data-vi=" Triển khai hạ tầng máy chủ ảo và kiến trúc mạng trên môi trường điện toán đám mây Google Cloud Platform (GCP)."
-                          data-en=" Deployed a virtual server infrastructure and network architecture on the Google Cloud Platform (GCP) cloud computing environment.">
-                      &nbsp;Triển khai hạ tầng máy chủ ảo và kiến trúc mạng trên môi trường điện toán đám mây Google Cloud Platform (GCP).
-                    </span>
-                  </p>
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="⚙️ Hành động:" data-en="⚙️ Action:">⚙️ Hành động:</span>
-                    </span>
-                    <span data-vi=" Thiết kế mạng ảo VPC (Virtual Private Cloud). Cấu hình Firewall rules điều hướng traffic in/out an toàn. Khởi tạo và cấp dải IP cho các máy ảo (VM). Thiết lập kết nối VPC Peering để định tuyến giữa các mạng độc lập. Tích hợp công cụ Monitoring giám sát tải CPU của VM và cấu hình lưu trữ Log truy cập Web Server nội bộ."
-                          data-en=" Designed a Virtual Private Cloud (VPC) network. Configured Firewall rules to securely direct inbound/outbound traffic. Provisioned VM instances with allocated IP ranges. Established VPC Peering to enable routing between independent networks. Integrated Cloud Monitoring to track VM CPU load and configured Cloud Logging for internal Web Server access logs.">
-                      &nbsp;Thiết kế mạng ảo VPC (Virtual Private Cloud). Cấu hình Firewall rules điều hướng traffic in/out an toàn. Khởi tạo và cấp dải IP cho các máy ảo (VM). Thiết lập kết nối VPC Peering để định tuyến giữa các mạng độc lập. Tích hợp công cụ Monitoring giám sát tải CPU của VM và cấu hình lưu trữ Log truy cập Web Server nội bộ.
-                    </span>
-                  </p>
-                  <p class="m-0">
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      <span data-vi="✅ Kết quả:" data-en="✅ Result:">✅ Kết quả:</span>
-                    </span>
-                    <span data-vi=" Triển khai thành công hạ tầng mạng Cloud linh hoạt, bảo mật. Đảm bảo các VM ở các VPC khác nhau ping thông suốt và giám sát hiệu năng hệ thống chặt chẽ."
-                          data-en=" Successfully deployed a flexible, secure Cloud network infrastructure. Verified unobstructed ping connectivity between VMs across different VPCs and achieved rigorous system performance monitoring.">
-                      &nbsp;Triển khai thành công hạ tầng mạng Cloud linh hoạt, bảo mật. Đảm bảo các VM ở các VPC khác nhau ping thông suốt và giám sát hiệu năng hệ thống chặt chẽ.
-                    </span>
-                  </p>
-                  <p class="m-0 text-xs font-mono text-gray-500 dark:text-gray-500 pt-1">
-                    Tools: Google Cloud Platform (GCP) · VPC · VM Instances · VPC Peering · Cloud Firewall · Cloud Monitoring &amp; Logging
-                  </p>
-                </div>
-              </article>
+                  </h3>
+                  <div class="mt-4 space-y-3 leading-relaxed text-sm text-gray-700 dark:text-gray-300">
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="🔍 Tình huống:" data-en="🔍 Situation:">🔍 Tình huống:</span>
+                      </span>
+                      <span
+                        data-vi=" Triển khai hạ tầng máy chủ ảo và kiến trúc mạng trên môi trường điện toán đám mây Google Cloud Platform (GCP)."
+                        data-en=" Deployed a virtual server infrastructure and network architecture on the Google Cloud Platform (GCP) cloud computing environment.">
+                        &nbsp;Triển khai hạ tầng máy chủ ảo và kiến trúc mạng trên môi trường điện toán đám mây Google
+                        Cloud Platform (GCP).
+                      </span>
+                    </p>
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="⚙️ Hành động:" data-en="⚙️ Action:">⚙️ Hành động:</span>
+                      </span>
+                      <span
+                        data-vi=" Thiết kế mạng ảo VPC (Virtual Private Cloud). Cấu hình Firewall rules điều hướng traffic in/out an toàn. Khởi tạo và cấp dải IP cho các máy ảo (VM). Thiết lập kết nối VPC Peering để định tuyến giữa các mạng độc lập. Tích hợp công cụ Monitoring giám sát tải CPU của VM và cấu hình lưu trữ Log truy cập Web Server nội bộ."
+                        data-en=" Designed a Virtual Private Cloud (VPC) network. Configured Firewall rules to securely direct inbound/outbound traffic. Provisioned VM instances with allocated IP ranges. Established VPC Peering to enable routing between independent networks. Integrated Cloud Monitoring to track VM CPU load and configured Cloud Logging for internal Web Server access logs.">
+                        &nbsp;Thiết kế mạng ảo VPC (Virtual Private Cloud). Cấu hình Firewall rules điều hướng traffic
+                        in/out an toàn. Khởi tạo và cấp dải IP cho các máy ảo (VM). Thiết lập kết nối VPC Peering để
+                        định tuyến giữa các mạng độc lập. Tích hợp công cụ Monitoring giám sát tải CPU của VM và cấu
+                        hình lưu trữ Log truy cập Web Server nội bộ.
+                      </span>
+                    </p>
+                    <p class="m-0">
+                      <span class="font-semibold text-gray-900 dark:text-white">
+                        <span data-vi="✅ Kết quả:" data-en="✅ Result:">✅ Kết quả:</span>
+                      </span>
+                      <span
+                        data-vi=" Triển khai thành công hạ tầng mạng Cloud linh hoạt, bảo mật. Đảm bảo các VM ở các VPC khác nhau ping thông suốt và giám sát hiệu năng hệ thống chặt chẽ."
+                        data-en=" Successfully deployed a flexible, secure Cloud network infrastructure. Verified unobstructed ping connectivity between VMs across different VPCs and achieved rigorous system performance monitoring.">
+                        &nbsp;Triển khai thành công hạ tầng mạng Cloud linh hoạt, bảo mật. Đảm bảo các VM ở các VPC khác
+                        nhau ping thông suốt và giám sát hiệu năng hệ thống chặt chẽ.
+                      </span>
+                    </p>
+                    <img src="./images/cloud_lab.png" alt="Topology" data-vi="Mô hình mạng" data-en="Network Topology"
+                      class="mt-4 w-full h-auto rounded-lg border border-gray-200 dark:border-gray-800 object-cover opacity-90 hover:opacity-100 transition-opacity">
+                    <div>
+                      <a href="./docs/Copy of Cloud_Google.docx" download class="topbar-btn inline-block">
+                        <span data-vi="📄 Tải Báo Cáo (.docx)" data-en="📄 Download Report (.docx)">📄 Tải Báo Cáo
+                          (.docx)</span>
+                      </a>
+                    </div>
+                    <p class="m-0 text-xs font-mono text-gray-500 dark:text-gray-500 pt-1">
+                      Tools: Google Cloud Platform (GCP) · VPC · VM Instances · VPC Peering · Cloud Firewall · Cloud
+                      Monitoring &amp; Logging
+                    </p>
+                  </div>
+                </article>
 
-            </section>
+              </section>
 
-            <!-- =====================================================
+              <!-- =====================================================
                  TAB 2 (new): EXPERIENCE & EDUCATION
                  Order: Education → Certifications → Work Experience
                  ===================================================== -->
-            <section id="tab-expedu" class="dash-panel viewFade hidden space-y-4">
+              <section id="tab-expedu" class="dash-panel viewFade hidden space-y-4">
 
-              <!-- 1. Education -->
-              <div class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
-                <h2 class="m-0 border-b border-gray-200 dark:border-gray-800 pb-3 font-bold uppercase tracking-widest text-sm text-gray-900 dark:text-white">
-                  <span data-vi="🎓 HỌC VẤN" data-en="🎓 EDUCATION">🎓 HỌC VẤN</span>
-                </h2>
-                <div class="mt-4 space-y-4 text-sm text-gray-700 dark:text-gray-300">
-                  <div>
-                    <p class="m-0 font-bold text-gray-900 dark:text-white">
-                      <span data-vi="Trường Đại học Kinh tế Kỹ thuật Công nghiệp" data-en="University of Economics – Technology for Industries (UNETI)">
-                        Trường Đại học Kinh tế Kỹ thuật Công nghiệp
-                      </span>
-                    </p>
-                    <p class="m-0 text-gray-500 dark:text-gray-500 text-xs">
-                      09/2022 – <span data-vi="Hiện tại" data-en="Present">Hiện tại</span>
-                    </p>
-                    <p class="m-0 mt-1">
-                      <span data-vi="Chuyên ngành: Mạng Máy tính và Truyền thông dữ liệu" data-en="Major: Computer Networks and Data Communications">
-                        Chuyên ngành: Mạng Máy tính và Truyền thông dữ liệu
-                      </span>
-                    </p>
-                  </div>
-                  <div>
-                    <p class="m-0 font-bold text-gray-900 dark:text-white">BKACAD</p>
-                    <p class="m-0 text-gray-500 dark:text-gray-500 text-xs">10/2024 – 02/2025</p>
-                    <p class="m-0 mt-1">
-                      <span data-vi="Hoàn thành khóa học CCNA" data-en="Completed CCNA Training Course">Hoàn thành khóa học CCNA</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 2. Certifications -->
-              <div class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
-                <h2 class="m-0 border-b border-gray-200 dark:border-gray-800 pb-3 font-bold uppercase tracking-widest text-sm text-gray-900 dark:text-white">
-                  <span data-vi="🏅 CHỨNG CHỈ" data-en="🏅 CERTIFICATIONS">🏅 CHỨNG CHỈ</span>
-                </h2>
-                <div class="mt-4 space-y-3 text-sm text-gray-700 dark:text-gray-300">
-                  <div class="flex items-start justify-between gap-4">
+                <!-- 1. Education -->
+                <div class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
+                  <h2
+                    class="m-0 border-b border-gray-200 dark:border-gray-800 pb-3 font-bold uppercase tracking-widest text-sm text-gray-900 dark:text-white">
+                    <span data-vi="🎓 HỌC VẤN" data-en="🎓 EDUCATION">🎓 HỌC VẤN</span>
+                  </h2>
+                  <div class="mt-4 space-y-4 text-sm text-gray-700 dark:text-gray-300">
                     <div>
-                      <p class="m-0 font-bold text-gray-900 dark:text-white">Cisco Certified Network Associate (CCNA)</p>
-                      <p class="m-0 text-gray-500 dark:text-gray-500 text-xs">04/2026 – 04/2029</p>
+                      <p class="m-0 font-bold text-gray-900 dark:text-white">
+                        <span data-vi="Trường Đại học Kinh tế Kỹ thuật Công nghiệp"
+                          data-en="University of Economics – Technology for Industries (UNETI)">
+                          Trường Đại học Kinh tế Kỹ thuật Công nghiệp
+                        </span>
+                      </p>
+                      <p class="m-0 text-gray-500 dark:text-gray-500 text-xs">
+                        09/2022 – <span data-vi="Hiện tại" data-en="Present">Hiện tại</span>
+                      </p>
+                      <p class="m-0 mt-1">
+                        <span data-vi="Chuyên ngành: Mạng Máy tính và Truyền thông dữ liệu"
+                          data-en="Major: Computer Networks and Data Communications">
+                          Chuyên ngành: Mạng Máy tính và Truyền thông dữ liệu
+                        </span>
+                      </p>
                     </div>
-                    <a href="https://bit.ly/xacthuc_CCNA_credly" target="_blank" rel="noopener"
-                       class="shrink-0 topbar-btn text-xs">
-                      Verify ↗
-                    </a>
-                  </div>
-                  <div class="flex items-start justify-between gap-4">
                     <div>
-                      <p class="m-0 font-bold text-gray-900 dark:text-white">Fortinet Certified Associate – Cybersecurity (FCA)</p>
-                      <p class="m-0 text-gray-500 dark:text-gray-500 text-xs">09/2025</p>
+                      <p class="m-0 font-bold text-gray-900 dark:text-white">BKACAD</p>
+                      <p class="m-0 text-gray-500 dark:text-gray-500 text-xs">10/2024 – 02/2025</p>
+                      <p class="m-0 mt-1">
+                        <span data-vi="Hoàn thành khóa học CCNA" data-en="Completed CCNA Training Course">Hoàn thành
+                          khóa học CCNA</span>
+                      </p>
                     </div>
-                    <a href="https://bit.ly/xacthuc_fca_credly" target="_blank" rel="noopener"
-                       class="shrink-0 topbar-btn text-xs">
-                      Verify ↗
-                    </a>
                   </div>
                 </div>
-              </div>
 
-              <!-- 3. Work Experience -->
-              <div class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
-                <h2 class="m-0 border-b border-gray-200 dark:border-gray-800 pb-3 font-bold uppercase tracking-widest text-sm text-gray-900 dark:text-white">
-                  <span data-vi="💼 KINH NGHIỆM LÀM VIỆC" data-en="💼 WORK EXPERIENCE">💼 KINH NGHIỆM LÀM VIỆC</span>
-                </h2>
-                <div class="mt-4 space-y-4 leading-relaxed text-sm text-gray-700 dark:text-gray-300">
-                  <div>
-                    <p class="m-0 font-bold text-gray-900 dark:text-white">
-                      VNPT TECHNOLOGY &nbsp;
-                      <span class="font-normal text-gray-500 dark:text-gray-500 text-xs">12/2025 – 02/2026</span>
-                    </p>
-                    <p class="m-0 text-xs text-gray-500 dark:text-gray-500 mb-2">
-                      <span data-vi="Thực tập sinh Kỹ thuật Sản xuất &amp; Kiểm định" data-en="Production Engineering &amp; QA Intern">Thực tập sinh Kỹ thuật Sản xuất &amp; Kiểm định</span>
-                    </p>
-                    <ul class="m-0 pl-4 space-y-1 list-disc">
-                      <li>
-                        <span data-vi="Tham gia trực tiếp vào quy trình lắp ráp, nạp firmware thiết bị mạng (Modem, ONT)."
-                              data-en="Directly participated in the assembly and firmware flashing processes for network equipment (Modems, ONTs).">
-                          Tham gia trực tiếp vào quy trình lắp ráp, nạp firmware thiết bị mạng (Modem, ONT).
-                        </span>
-                      </li>
-                      <li>
-                        <span data-vi="Chẩn đoán lỗi vật lý, kiểm tra tính toàn vẹn của tín hiệu LAN/WAN và đảm bảo độ ổn định của bo mạch trước khi xuất xưởng."
-                              data-en="Diagnosed physical defects, verified LAN/WAN signal integrity, and ensured PCB stability prior to shipment.">
-                          Chẩn đoán lỗi vật lý, kiểm tra tính toàn vẹn của tín hiệu LAN/WAN và đảm bảo độ ổn định của bo mạch trước khi xuất xưởng.
-                        </span>
-                      </li>
-                      <li>
-                        <span data-vi="Rèn luyện sự tỉ mỉ và khả năng chịu áp lực cao trong môi trường sản xuất quy mô lớn."
-                              data-en="Cultivated meticulous attention to detail and the ability to perform under high-pressure conditions in a large-scale manufacturing environment.">
-                          Rèn luyện sự tỉ mỉ và khả năng chịu áp lực cao trong môi trường sản xuất quy mô lớn.
-                        </span>
-                      </li>
-                    </ul>
+                <!-- 2. Certifications -->
+                <div class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
+                  <h2
+                    class="m-0 border-b border-gray-200 dark:border-gray-800 pb-3 font-bold uppercase tracking-widest text-sm text-gray-900 dark:text-white">
+                    <span data-vi="🏅 CHỨNG CHỈ" data-en="🏅 CERTIFICATIONS">🏅 CHỨNG CHỈ</span>
+                  </h2>
+                  <div class="mt-4 space-y-3 text-sm text-gray-700 dark:text-gray-300">
+                    <div class="flex items-start justify-between gap-4">
+                      <div>
+                        <p class="m-0 font-bold text-gray-900 dark:text-white">Cisco Certified Network Associate (CCNA)
+                        </p>
+                        <p class="m-0 text-gray-500 dark:text-gray-500 text-xs">04/2026 – 04/2029</p>
+                      </div>
+                      <a href="https://bit.ly/xacthuc_CCNA_credly" target="_blank" rel="noopener"
+                        class="shrink-0 topbar-btn text-xs">
+                        Verify ↗
+                      </a>
+                    </div>
+                    <div class="flex items-start justify-between gap-4">
+                      <div>
+                        <p class="m-0 font-bold text-gray-900 dark:text-white">Fortinet Certified Associate –
+                          Cybersecurity (FCA)</p>
+                        <p class="m-0 text-gray-500 dark:text-gray-500 text-xs">09/2025</p>
+                      </div>
+                      <a href="https://bit.ly/xacthuc_fca_credly" target="_blank" rel="noopener"
+                        class="shrink-0 topbar-btn text-xs">
+                        Verify ↗
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-            </section>
-          </div>
-        </section>
+                <!-- 3. Work Experience -->
+                <div class="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/40 p-5">
+                  <h2
+                    class="m-0 border-b border-gray-200 dark:border-gray-800 pb-3 font-bold uppercase tracking-widest text-sm text-gray-900 dark:text-white">
+                    <span data-vi="💼 KINH NGHIỆM LÀM VIỆC" data-en="💼 WORK EXPERIENCE">💼 KINH NGHIỆM LÀM VIỆC</span>
+                  </h2>
+                  <div class="mt-4 space-y-4 leading-relaxed text-sm text-gray-700 dark:text-gray-300">
+                    <div>
+                      <p class="m-0 font-bold text-gray-900 dark:text-white">
+                        VNPT TECHNOLOGY &nbsp;
+                        <span class="font-normal text-gray-500 dark:text-gray-500 text-xs">12/2025 – 02/2026</span>
+                      </p>
+                      <p class="m-0 text-xs text-gray-500 dark:text-gray-500 mb-2">
+                        <span data-vi="Thực tập sinh Kỹ thuật Sản xuất &amp; Kiểm định"
+                          data-en="Production Engineering &amp; QA Intern">Thực tập sinh Kỹ thuật Sản xuất &amp; Kiểm
+                          định</span>
+                      </p>
+                      <ul class="m-0 pl-4 space-y-1 list-disc">
+                        <li>
+                          <span
+                            data-vi="Tham gia trực tiếp vào quy trình lắp ráp, nạp firmware thiết bị mạng (Modem, ONT)."
+                            data-en="Directly participated in the assembly and firmware flashing processes for network equipment (Modems, ONTs).">
+                            Tham gia trực tiếp vào quy trình lắp ráp, nạp firmware thiết bị mạng (Modem, ONT).
+                          </span>
+                        </li>
+                        <li>
+                          <span
+                            data-vi="Chẩn đoán lỗi vật lý, kiểm tra tính toàn vẹn của tín hiệu LAN/WAN và đảm bảo độ ổn định của bo mạch trước khi xuất xưởng."
+                            data-en="Diagnosed physical defects, verified LAN/WAN signal integrity, and ensured PCB stability prior to shipment.">
+                            Chẩn đoán lỗi vật lý, kiểm tra tính toàn vẹn của tín hiệu LAN/WAN và đảm bảo độ ổn định của
+                            bo mạch trước khi xuất xưởng.
+                          </span>
+                        </li>
+                        <li>
+                          <span
+                            data-vi="Rèn luyện sự tỉ mỉ và khả năng chịu áp lực cao trong môi trường sản xuất quy mô lớn."
+                            data-en="Cultivated meticulous attention to detail and the ability to perform under high-pressure conditions in a large-scale manufacturing environment.">
+                            Rèn luyện sự tỉ mỉ và khả năng chịu áp lực cao trong môi trường sản xuất quy mô lớn.
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+              </section>
+            </div>
+          </section>
+        </div>
       </div>
-    </div>
-  </main>
+    </main>
 
-  <footer class="mx-auto max-w-6xl px-5 pb-10 pt-6 text-center">
-    <div class="inline-flex items-center gap-2 rounded-full border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/30 px-4 py-2 text-xs text-gray-500 dark:text-gray-600 font-mono">
-      <span class="inline-flex h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse"></span>
-      <span id="footerStatus">render: realtime</span>
-      <span>•</span>
-      <span id="footerMode">mode: light</span>
-    </div>
-  </footer>
-</div>
+    <footer class="mx-auto max-w-6xl px-5 pb-10 pt-6 text-center">
+      <div
+        class="inline-flex items-center gap-2 rounded-full border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d10]/30 px-4 py-2 text-xs text-gray-500 dark:text-gray-600 font-mono">
+        <span class="inline-flex h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse"></span>
+        <span id="footerStatus">render: realtime</span>
+        <span>•</span>
+        <span id="footerMode">mode: light</span>
+      </div>
+    </footer>
+  </div>
 
-<!-- ================================================================
+  <!-- ================================================================
      SCRIPTS
      ================================================================ -->
-<script>
-(function () {
-  /* ──────────────────────────────────────────────────────────────
-     STATE
-  ────────────────────────────────────────────────────────────── */
-  const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let currentLang = "vi";   // default language
-  let dashboardReady = false;
+  <script>
+      (function () {
+        /* ──────────────────────────────────────────────────────────────
+           STATE
+        ────────────────────────────────────────────────────────────── */
+        const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let currentLang = "vi";   // default language
+        let dashboardReady = false;
 
-  const boot        = document.getElementById("boot");
-  const bootPre     = document.getElementById("bootPre");
-  const bootTextEl  = document.getElementById("bootText");
-  const portfolio   = document.getElementById("portfolio");
-  const tabCmd      = document.getElementById("tabCmd");
+        const boot = document.getElementById("boot");
+        const bootPre = document.getElementById("bootPre");
+        const bootTextEl = document.getElementById("bootText");
+        const portfolio = document.getElementById("portfolio");
+        const tabCmd = document.getElementById("tabCmd");
 
-  /* ──────────────────────────────────────────────────────────────
-     THEME
-  ────────────────────────────────────────────────────────────── */
-  // Default = Light: no 'dark' class on <html>
-  function updateThemeUI() {
-    const isDark = document.documentElement.classList.contains("dark");
-    const btn = document.getElementById("themeToggleBtn");
-    if (btn) btn.textContent = isDark ? "[ Mode: Dark ]" : "[ Mode: Light ]";
-    const footerMode = document.getElementById("footerMode");
-    if (footerMode) footerMode.textContent = isDark ? "mode: dark" : "mode: light";
-  }
+        /* ──────────────────────────────────────────────────────────────
+           THEME
+        ────────────────────────────────────────────────────────────── */
+        // Default = Light: no 'dark' class on <html>
+        function updateThemeUI() {
+          const isDark = document.documentElement.classList.contains("dark");
+          const btn = document.getElementById("themeToggleBtn");
+          if (btn) btn.textContent = isDark ? "[ Mode: Dark ]" : "[ Mode: Light ]";
+          const footerMode = document.getElementById("footerMode");
+          if (footerMode) footerMode.textContent = isDark ? "mode: dark" : "mode: light";
+        }
 
-  window.toggleTheme = function () {
-    document.documentElement.classList.toggle("dark");
-    updateThemeUI();
-  };
+        window.toggleTheme = function () {
+          document.documentElement.classList.toggle("dark");
+          updateThemeUI();
+        };
 
-  /* ──────────────────────────────────────────────────────────────
-     LANGUAGE – toggleLang() walks every [data-vi] / [data-en]
-  ────────────────────────────────────────────────────────────── */
-  window.toggleLang = function () {
-    currentLang = currentLang === "vi" ? "en" : "vi";
-    document.documentElement.lang = currentLang;
+        /* ──────────────────────────────────────────────────────────────
+           LANGUAGE – toggleLang() walks every [data-vi] / [data-en]
+        ────────────────────────────────────────────────────────────── */
+        window.toggleLang = function () {
+          currentLang = currentLang === "vi" ? "en" : "vi";
+          document.documentElement.lang = currentLang;
 
-    const btn = document.getElementById("langToggleBtn");
-    if (btn) btn.textContent = currentLang === "vi" ? "[ Lang: VI ]" : "[ Lang: EN ]";
+          const btn = document.getElementById("langToggleBtn");
+          if (btn) btn.textContent = currentLang === "vi" ? "[ Lang: VI ]" : "[ Lang: EN ]";
 
-    // Walk all elements that have both data-vi and data-en attributes
-    document.querySelectorAll("[data-vi][data-en]").forEach(el => {
-      el.textContent = el.getAttribute(`data-${currentLang}`);
-    });
-  };
+          // Walk all elements that have both data-vi and data-en attributes
+          document.querySelectorAll("[data-vi][data-en]").forEach(el => {
+            el.textContent = el.getAttribute(`data-${currentLang}`);
+          });
+        };
 
-  /* ──────────────────────────────────────────────────────────────
-     UTILITIES
-  ────────────────────────────────────────────────────────────── */
-  function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+        /* ──────────────────────────────────────────────────────────────
+           UTILITIES
+        ────────────────────────────────────────────────────────────── */
+        function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-  function scrollToBottom() {
-    if (bootPre) bootPre.scrollTop = bootPre.scrollHeight;
-  }
+        function scrollToBottom() {
+          if (bootPre) bootPre.scrollTop = bootPre.scrollHeight;
+        }
 
-  /* ── FIX: Use Tailwind classes, NOT inline styles ─────────── */
-  function appendText(text, kind) {
-    // kind: "base" | "cmd"
-    const span = document.createElement("span");
-    if (kind === "cmd") {
-      span.className = "text-gray-900 dark:text-white font-bold";
-    } else {
-      span.className = "text-gray-500 dark:text-gray-400";
-    }
-    span.textContent = text;
-    bootTextEl.appendChild(span);
-    scrollToBottom();
-  }
+        /* ── FIX: Use Tailwind classes, NOT inline styles ─────────── */
+        function appendText(text, kind) {
+          // kind: "base" | "cmd"
+          const span = document.createElement("span");
+          if (kind === "cmd") {
+            span.className = "text-gray-900 dark:text-white font-bold";
+          } else {
+            span.className = "text-gray-500 dark:text-gray-400";
+          }
+          span.textContent = text;
+          bootTextEl.appendChild(span);
+          scrollToBottom();
+        }
 
-  function appendNewline() {
-    bootTextEl.appendChild(document.createTextNode("\n"));
-    scrollToBottom();
-  }
+        function appendNewline() {
+          bootTextEl.appendChild(document.createTextNode("\n"));
+          scrollToBottom();
+        }
 
-  async function typeText(text, kind, perCharMs) {
-    const span = document.createElement("span");
-    if (kind === "cmd") {
-      span.className = "text-gray-900 dark:text-white font-bold";
-    } else {
-      span.className = "text-gray-500 dark:text-gray-400";
-    }
-    bootTextEl.appendChild(span);
-    for (let i = 0; i < text.length; i++) {
-      span.textContent += text[i];
-      scrollToBottom();
-      await sleep(perCharMs);
-    }
-  }
+        async function typeText(text, kind, perCharMs) {
+          const span = document.createElement("span");
+          if (kind === "cmd") {
+            span.className = "text-gray-900 dark:text-white font-bold";
+          } else {
+            span.className = "text-gray-500 dark:text-gray-400";
+          }
+          bootTextEl.appendChild(span);
+          for (let i = 0; i < text.length; i++) {
+            span.textContent += text[i];
+            scrollToBottom();
+            await sleep(perCharMs);
+          }
+        }
 
-  /* ──────────────────────────────────────────────────────────────
-     BOOT SCENARIO RUNNER
-  ────────────────────────────────────────────────────────────── */
-  async function runScenario(steps) {
-    for (const step of steps) {
-      if (step.kind === "pause") { await sleep(step.delayMs ?? 0); continue; }
-      const kind    = step.kind_color ?? "base";
-      const newline = step.newline !== false;
-      if (step.kind === "dump") {
-        appendText(step.text ?? "", kind);
-        if (newline) appendNewline();
-        await sleep(step.delayMs ?? 0);
-      } else if (step.kind === "type") {
-        await typeText(step.text ?? "", kind, step.perCharMs ?? 80);
-        if (newline) appendNewline();
-        await sleep(step.delayMs ?? 0);
-      }
-    }
-  }
+        /* ──────────────────────────────────────────────────────────────
+           BOOT SCENARIO RUNNER
+        ────────────────────────────────────────────────────────────── */
+        async function runScenario(steps) {
+          for (const step of steps) {
+            if (step.kind === "pause") { await sleep(step.delayMs ?? 0); continue; }
+            const kind = step.kind_color ?? "base";
+            const newline = step.newline !== false;
+            if (step.kind === "dump") {
+              appendText(step.text ?? "", kind);
+              if (newline) appendNewline();
+              await sleep(step.delayMs ?? 0);
+            } else if (step.kind === "type") {
+              await typeText(step.text ?? "", kind, step.perCharMs ?? 80);
+              if (newline) appendNewline();
+              await sleep(step.delayMs ?? 0);
+            }
+          }
+        }
 
-  async function runBootSequence() {
-    if (!bootTextEl) return;
-    bootTextEl.textContent = "";
+        async function runBootSequence() {
+          if (!bootTextEl) return;
+          bootTextEl.textContent = "";
 
-    const steps = [
-      { kind:"dump", text:"Initializing Hardware ...", kind_color:"base", delayMs:50 },
-      { kind:"dump", text:"System integrity status: 0x610", kind_color:"base", delayMs:50 },
-      { kind:"dump", text:"Rom image verified correctly", kind_color:"base", delayMs:50 },
-      { kind:"dump", text:"", kind_color:"base", delayMs:200 },
-      { kind:"dump", text:"System Bootstrap, Version 16.7(3r), RELEASE SOFTWARE", kind_color:"base", delayMs:50 },
-      { kind:"dump", text:"Cisco ISR4331/K9 platform with 4194304 Kbytes of main memory", kind_color:"base", delayMs:50 },
-      { kind:"dump", text:"Located isr4300-universalk9.16.06.04.SPA.bin", kind_color:"base", delayMs:200 },
-      { kind:"type", text:"##################################################", kind_color:"base", perCharMs:5, delayMs:0, newline:true },
-      { kind:"dump", text:"Image validated", kind_color:"base", delayMs:100 },
-      { kind:"dump", text:"3 Gigabit Ethernet interfaces", kind_color:"base", delayMs:30 },
-      { kind:"dump", text:"4194304K bytes of physical memory.", kind_color:"base", delayMs:30 },
-      { kind:"dump", text:"", kind_color:"base", delayMs:500 },
-      { kind:"dump", text:"Press RETURN to get started!", kind_color:"base", delayMs:500 },
-      { kind:"dump", text:"", kind_color:"base", delayMs:600 },
-      { kind:"dump", text:"User Access Verification", kind_color:"base", delayMs:50 },
-      { kind:"dump", text:"", kind_color:"base", delayMs:50 },
-      { kind:"dump", text:"Password: ", kind_color:"base", delayMs:300, newline:false },
-      { kind:"type", text:"*****", kind_color:"cmd", perCharMs:100, delayMs:0, newline:true },
-      { kind:"dump", text:"", kind_color:"base", delayMs:200 },
-      { kind:"dump", text:"levietkhoa>", kind_color:"base", delayMs:300, newline:false },
-      { kind:"type", text:"enable", kind_color:"cmd", perCharMs:60, delayMs:0, newline:true },
-      { kind:"dump", text:"Password: ", kind_color:"base", delayMs:200, newline:false },
-      { kind:"type", text:"********", kind_color:"cmd", perCharMs:100, delayMs:0, newline:true },
-      { kind:"dump", text:"", kind_color:"base", delayMs:200 },
-      { kind:"dump", text:"levietkhoa#", kind_color:"base", delayMs:300, newline:false },
-      { kind:"type", text:"show ?", kind_color:"cmd", perCharMs:60, delayMs:0, newline:true },
-      { kind:"dump", text:"", kind_color:"base", delayMs:200 },
-      { kind:"dump", text:"  levietkhoa_portfolio   Display the personal portfolio and resume", kind_color:"base", delayMs:50 },
-      { kind:"dump", text:"levietkhoa#", kind_color:"base", delayMs:300, newline:false },
-      { kind:"type", text:"show levietkhoa_portfolio", kind_color:"cmd", perCharMs:50, delayMs:2000, newline:true },
-      { kind:"dump", text:"Building configuration...", kind_color:"base", delayMs:50 },
-      { kind:"dump", text:"[OK]", kind_color:"base", delayMs:300 },
-    ];
+          const steps = [
+            { kind: "dump", text: "Initializing Hardware ...", kind_color: "base", delayMs: 50 },
+            { kind: "dump", text: "System integrity status: 0x610", kind_color: "base", delayMs: 50 },
+            { kind: "dump", text: "Rom image verified correctly", kind_color: "base", delayMs: 50 },
+            { kind: "dump", text: "", kind_color: "base", delayMs: 200 },
+            { kind: "dump", text: "System Bootstrap, Version 16.7(3r), RELEASE SOFTWARE", kind_color: "base", delayMs: 50 },
+            { kind: "dump", text: "Cisco ISR4331/K9 platform with 4194304 Kbytes of main memory", kind_color: "base", delayMs: 50 },
+            { kind: "dump", text: "Located isr4300-universalk9.16.06.04.SPA.bin", kind_color: "base", delayMs: 200 },
+            { kind: "type", text: "##################################################", kind_color: "base", perCharMs: 5, delayMs: 0, newline: true },
+            { kind: "dump", text: "Image validated", kind_color: "base", delayMs: 100 },
+            { kind: "dump", text: "3 Gigabit Ethernet interfaces", kind_color: "base", delayMs: 30 },
+            { kind: "dump", text: "4194304K bytes of physical memory.", kind_color: "base", delayMs: 30 },
+            { kind: "dump", text: "", kind_color: "base", delayMs: 500 },
+            { kind: "dump", text: "Press RETURN to get started!", kind_color: "base", delayMs: 500 },
+            { kind: "dump", text: "", kind_color: "base", delayMs: 600 },
+            { kind: "dump", text: "User Access Verification", kind_color: "base", delayMs: 50 },
+            { kind: "dump", text: "", kind_color: "base", delayMs: 50 },
+            { kind: "dump", text: "Password: ", kind_color: "base", delayMs: 300, newline: false },
+            { kind: "type", text: "*****", kind_color: "cmd", perCharMs: 100, delayMs: 0, newline: true },
+            { kind: "dump", text: "", kind_color: "base", delayMs: 200 },
+            { kind: "dump", text: "levietkhoa>", kind_color: "base", delayMs: 300, newline: false },
+            { kind: "type", text: "enable", kind_color: "cmd", perCharMs: 60, delayMs: 0, newline: true },
+            { kind: "dump", text: "Password: ", kind_color: "base", delayMs: 200, newline: false },
+            { kind: "type", text: "********", kind_color: "cmd", perCharMs: 100, delayMs: 0, newline: true },
+            { kind: "dump", text: "", kind_color: "base", delayMs: 200 },
+            { kind: "dump", text: "levietkhoa#", kind_color: "base", delayMs: 300, newline: false },
+            { kind: "type", text: "show ?", kind_color: "cmd", perCharMs: 60, delayMs: 0, newline: true },
+            { kind: "dump", text: "", kind_color: "base", delayMs: 200 },
+            { kind: "dump", text: "  levietkhoa_portfolio   Display the personal portfolio and resume", kind_color: "base", delayMs: 50 },
+            { kind: "dump", text: "levietkhoa#", kind_color: "base", delayMs: 300, newline: false },
+            { kind: "type", text: "show levietkhoa_portfolio", kind_color: "cmd", perCharMs: 50, delayMs: 2000, newline: true },
+            { kind: "dump", text: "Building configuration...", kind_color: "base", delayMs: 50 },
+            { kind: "dump", text: "[OK]", kind_color: "base", delayMs: 300 },
+          ];
 
-    await runScenario(steps);
-    await fadeOutBootThenReveal();
-  }
+          await runScenario(steps);
+          await fadeOutBootThenReveal();
+        }
 
-  async function fadeOutBootThenReveal() {
-    await sleep(800);
-    revealPortfolio();
-    if (!boot) return;
-    boot.style.transition = "opacity 550ms ease";
-    boot.style.opacity = "0";
-    await sleep(600);
-    boot.remove();
-  }
+        async function fadeOutBootThenReveal() {
+          await sleep(800);
+          revealPortfolio();
+          if (!boot) return;
+          boot.style.transition = "opacity 550ms ease";
+          boot.style.opacity = "0";
+          await sleep(600);
+          boot.remove();
+        }
 
-  /* ──────────────────────────────────────────────────────────────
-     DASHBOARD
-  ────────────────────────────────────────────────────────────── */
-  function revealPortfolio() {
-    if (!portfolio) return;
-    portfolio.classList.add("on");
-    initDashboard();
-  }
+        /* ──────────────────────────────────────────────────────────────
+           DASHBOARD
+        ────────────────────────────────────────────────────────────── */
+        function revealPortfolio() {
+          if (!portfolio) return;
+          portfolio.classList.add("on");
+          initDashboard();
+        }
 
-  function initDashboard() {
-    if (dashboardReady) return;
-    if (!tabCmd) return;
-    dashboardReady = true;
+        function initDashboard() {
+          if (dashboardReady) return;
+          if (!tabCmd) return;
+          dashboardReady = true;
 
-    const menuButtons = Array.from(document.querySelectorAll(".dash-tab"));
-    const panels      = Array.from(document.querySelectorAll(".dash-panel"));
-    let tabSwitchGen  = 0;
+          const menuButtons = Array.from(document.querySelectorAll(".dash-tab"));
+          const panels = Array.from(document.querySelectorAll(".dash-panel"));
+          let tabSwitchGen = 0;
 
-    function setMenuActive(tabId) {
-      menuButtons.forEach(b => {
-        b.classList.toggle("dash-tab-active", b.getAttribute("data-tab") === tabId);
-      });
-    }
+          function setMenuActive(tabId) {
+            menuButtons.forEach(b => {
+              b.classList.toggle("dash-tab-active", b.getAttribute("data-tab") === tabId);
+            });
+          }
 
-    async function typeHeader(text) {
-      tabCmd.textContent = "";
-      const perChar = prefersReduced ? 0 : 10;
-      for (let i = 0; i < text.length; i++) {
-        tabCmd.textContent += text[i];
-        if (perChar > 0) await sleep(perChar);
-      }
-    }
+          async function typeHeader(text) {
+            tabCmd.textContent = "";
+            const perChar = prefersReduced ? 0 : 10;
+            for (let i = 0; i < text.length; i++) {
+              tabCmd.textContent += text[i];
+              if (perChar > 0) await sleep(perChar);
+            }
+          }
 
-    async function switchTab(tabId) {
-      const myGen = ++tabSwitchGen;
-      panels.forEach(p => { p.classList.add("hidden"); p.classList.remove("on"); });
-      setMenuActive(tabId);
+          async function switchTab(tabId) {
+            const myGen = ++tabSwitchGen;
+            panels.forEach(p => { p.classList.add("hidden"); p.classList.remove("on"); });
+            setMenuActive(tabId);
 
-      const panel = document.getElementById(`tab-${tabId}`);
-      if (!panel) return;
+            const panel = document.getElementById(`tab-${tabId}`);
+            if (!panel) return;
 
-      const commands = {
-        objective: "show objective...",
-        expedu:    "show exp_education...",
-        projects:  "show projects_log...",
-        skills:    "show technical_skills...",
-      };
+            const commands = {
+              objective: "show objective...",
+              expedu: "show exp_education...",
+              projects: "show projects_log...",
+              skills: "show technical_skills...",
+            };
 
-      await typeHeader(commands[tabId] ?? "show status...");
-      await sleep(prefersReduced ? 0 : 120);
-      if (myGen !== tabSwitchGen) return;
+            await typeHeader(commands[tabId] ?? "show status...");
+            await sleep(prefersReduced ? 0 : 120);
+            if (myGen !== tabSwitchGen) return;
 
-      panel.classList.remove("hidden");
-      void panel.offsetWidth;
-      panel.classList.add("on");
-    }
+            panel.classList.remove("hidden");
+            void panel.offsetWidth;
+            panel.classList.add("on");
+          }
 
-    menuButtons.forEach(btn => {
-      btn.addEventListener("click", e => {
-        e.preventDefault();
-        const tabId = btn.getAttribute("data-tab");
-        if (tabId) switchTab(tabId);
-      });
-    });
+          menuButtons.forEach(btn => {
+            btn.addEventListener("click", e => {
+              e.preventDefault();
+              const tabId = btn.getAttribute("data-tab");
+              if (tabId) switchTab(tabId);
+            });
+          });
 
-    switchTab("objective");
-  }
+          switchTab("objective");
+        }
 
-  /* ──────────────────────────────────────────────────────────────
-     INIT
-  ────────────────────────────────────────────────────────────── */
-  updateThemeUI();
+        /* ──────────────────────────────────────────────────────────────
+           INIT
+        ────────────────────────────────────────────────────────────── */
+        updateThemeUI();
 
-  if (prefersReduced) {
-    if (boot) boot.style.display = "none";
-    revealPortfolio();
-    return;
-  }
+        if (prefersReduced) {
+          if (boot) boot.style.display = "none";
+          revealPortfolio();
+          return;
+        }
 
-  window.requestAnimationFrame(() => { runBootSequence(); });
-})();
-</script>
+        window.requestAnimationFrame(() => { runBootSequence(); });
+      })();
+  </script>
 </body>
+
 </html>
